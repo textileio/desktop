@@ -1,6 +1,6 @@
 {
   "name": "tray",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Textile Tray App",
   "main": "public/electron.ts",
   "homepage": "./",
