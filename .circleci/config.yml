@@ -69,10 +69,9 @@ jobs:
   release:
     docker:
       - image: cibuilds/github:0.10
-      - attach_workspace:
-        at: ~/
-
     steps:
+      - attach_workspace:
+          at: ~/
       - deploy:
           name: release all
           command: |
