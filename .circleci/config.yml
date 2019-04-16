@@ -71,6 +71,7 @@ jobs:
       - image: cibuilds/github:0.10
       - attach_workspace:
         at: ~/
+
     steps:
       - deploy:
           name: release all
