@@ -6,20 +6,6 @@ checkout-linux: &checkout-linux
 
 jobs:
 
-  persist-checkout:
-    docker:
-      - image: python
-    steps:
-      - checkout
-      - run:
-          name: clean up git
-          command: |
-            rm -rf .git
-      - persist_to_workspace:
-          root: /root
-          paths:
-            - project
-
   build:
     macos:
       xcode: "10.1.0"
@@ -97,10 +83,6 @@ workflows:
   version: 2
   desktop:
     jobs:
-      - persist-checkout:
-          filters:
-            tags:
-              only: /.*/
       - build:
           filters:
             branches:
