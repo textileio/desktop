@@ -1,0 +1,24 @@
+# defaults
+node_modules
+output
+resources
+bind_*.go
+
+# macOS
+.DS_Store
+
+# build
+*.syso
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables file
+.env
+
+# vscode settings
+.vscode
