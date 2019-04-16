@@ -5,13 +5,10 @@
 [![Keywords](https://img.shields.io/github/package-json/keywords/textileio/desktop.svg?style=popout-square)](./package.json)
 
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/textileio/desktop.svg?style=popout-square)](./package.json)
-[![npm (scoped)](https://img.shields.io/npm/v/@textile/desktop.svg?style=popout-square)](https://www.npmjs.com/package/@textile/desktop)
-[![node (scoped)](https://img.shields.io/node/v/@textile/desktop.svg?style=popout-square)](https://www.npmjs.com/package/@textile/desktop)
 [![GitHub license](https://img.shields.io/github/license/textileio/desktop.svg?style=popout-square)](./LICENSE)
 [![David](https://img.shields.io/david/dev/textileio/desktop.svg)](https://david-dm.org/textileio/desktop)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/textileio/desktop/master.svg?style=popout-square)](https://circleci.com/gh/textileio/desktop)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=popout-square)](https://github.com/RichardLitt/standard-readme)
-[![docs](https://img.shields.io/badge/docs-master-success.svg?style=popout-square)](https://textileio.github.io/desktop/)
 
 > Official Textile Desktop Tray App
 
