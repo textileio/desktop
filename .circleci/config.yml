@@ -1,9 +1,5 @@
 version: 2.1
 
-checkout-linux: &checkout-linux
-  attach_workspace:
-    at: /root
-
 jobs:
 
   build:
@@ -74,7 +70,9 @@ jobs:
     docker:
       - image: cibuilds/github:0.10
     steps:
-      - *checkout-linux
+      - checkout
+        attach_workspace:
+          at: /root
       - deploy:
           name: release all
           command: |
