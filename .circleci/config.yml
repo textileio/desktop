@@ -70,10 +70,6 @@ jobs:
     docker:
       - image: cibuilds/github:0.10
     steps:
-      - run:
-          name: clean up git
-          command: |
-            rm -rf .git
       - checkout
       - attach_workspace:
           at: ~/
