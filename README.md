@@ -38,7 +38,7 @@ This app provides access to an underlying `go-textile` node's REST API, and come
 
 This project was bootstrapped with Textile's [`textile-react-cookie`](https://github.com/textileio/textile-react-cookie). It was originally generated via [Create React App](https://github.com/facebook/create-react-app), and then the build/run configuration was customized with a `craco.config.js` file.
 
-To start developing with Textile desktop, run:
+To start developing with Textile desktop, you'll need to install `go`, `nodejs`, and various standard build tools. Then you can:
 
 **`yarn dev`**
 
@@ -55,6 +55,29 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 **`yarn dist`**
 
 Builds the app and bundles it as an [Electron app](https://electronjs.org/), along with the underlying go-textile node. This is how you produce a true Textile desktop release. See `./scripts/bundle.sh` for the commands used, and the [`go-astilectron` + bundler](https://github.com/asticode/go-astilectron-bundler#installation) repos for details.
+
+**Manual**
+
+Install `go-astilectron-bundler`:
+
+    go get github.com/asticode/go-astilectron-bundler/...
+    go install github.com/asticode/go-astilectron-bundler/astilectron-bundler
+
+Build the app:
+    yarn build
+    astilectron-bundler -v
+
+Double-click the built app in `tray/output/{darwin,linux,windows}-amd64`, or run it directly:
+
+    go run *.go
+
+You can also build the architecture-specific versions with:
+
+    astilectron-bundler -v -c bundler.{mac,linux,windows}.json
+
+_**Linux**_
+
+On Linux, you also have to `apt-get install libappindicator1 xclip libgconf-2-4` due to an issue with building Electron-based apps.
 
 ## Documentation
 
