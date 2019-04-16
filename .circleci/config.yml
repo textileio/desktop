@@ -70,13 +70,17 @@ jobs:
     docker:
       - image: cibuilds/github:0.10
     steps:
+      - run:
+          name: clean up git
+          command: |
+            rm -rf .git
       - checkout
       - attach_workspace:
           at: ~/
       - deploy:
           name: release all
           command: |
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ~/dist/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ~/dist/
 workflows:
   version: 2
   desktop:
