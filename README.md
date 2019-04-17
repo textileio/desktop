@@ -40,6 +40,27 @@ This project was bootstrapped with Textile's [`textile-react-cookie`](https://gi
 
 To start developing with Textile desktop, you'll need to install `go`, `nodejs`, and various standard build tools. Then you can:
 
+```bash
+yarn
+yarn dist -o {mac,linux,windows} && go run *.go
+```
+
+**Note:** By default `yarn dist` builds for all operating systems. For development, you'll want a platform specific build, so for OSX, you'll run,
+
+```bash
+yarn dist -o mac && go run *.go
+```
+
+If you modify the `JS` code, you'll need to rerun all of the above on order to rebuild the app and relaunch the Go service.
+
+If you are updating the `GO` code, you can simply run,
+
+```bash
+go run *.go
+```
+
+### Commands
+
 **`yarn dev`**
 
 Runs the app in the development mode. This will activate a vanilla Electron app in development mode. It will not support all Textile desktop functionality, but is a good way to play around with the UI.
