@@ -18,7 +18,7 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
   componentDidMount() {
     this.stores.store.fetchProfile()
   }
-  handleUsername = (e: SyntheticEvent) => {
+  handleDislpayName = (e: SyntheticEvent) => {
     e.preventDefault()
     const current = this.inputRef.current
     if (current) {
@@ -107,15 +107,15 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
                 </Icon.Group>
               </Label>
             </Segment>
-          <Header as='h4' style={{ margin: '1em 0 0.2em 0'}}>USERNAME</Header>
-          <Form onSubmit={this.handleUsername}>
+          <Header as='h4' style={{ margin: '1em 0 0.2em 0'}}>DISPLAY NAME</Header>
+          <Form onSubmit={this.handleDislpayName}>
             <Form.Field>
               <Input
-                placeholder='username'
+                placeholder='name'
                 iconPosition='left'
                 defaultValue={profile ? profile.name : ''}
               >
-                <Icon link onClick={this.handleUsername} name='save outline' />
+                <Icon link onClick={this.handleDislpayName} name='save outline' />
                 <input ref={this.inputRef} />
               </Input>
             </Form.Field>

@@ -1,4 +1,5 @@
 # defaults
+.idea
 node_modules
 output
 resources
