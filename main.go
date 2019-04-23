@@ -10,6 +10,8 @@ import (
 	"path/filepath"
 	"runtime"
 
+	"main/pages"
+
 	asti "github.com/asticode/go-astilectron"
 	bootstrap "github.com/asticode/go-astilectron-bootstrap"
 	astilog "github.com/asticode/go-astilog"
@@ -97,7 +99,6 @@ func startNode() error {
 
 	// wait for node to come online
 	<-node.OnlineCh()
-
 	return nil
 }
 
@@ -119,7 +120,8 @@ func stopNode() error {
 	return nil
 }
 
-func startTextile(repoPath string, password string) error {
+func startTextile(address string, password string) error {
+	repoPath := filepath.Join(appDir, address)
 	// build textile node
 	var err error
 	node, err = core.NewTextile(core.RunConfig{
@@ -138,12 +140,15 @@ func startTextile(repoPath string, password string) error {
 		astilog.Error(err)
 		return err
 	}
+
+	// start the Pages app
+	pages.Start(address, repoPath, node)
+
 	return nil
 }
 
 func openAndStartTextile(address string, password string) error {
-	repoPath := filepath.Join(appDir, address)
-	return startTextile(repoPath, password)
+	return startTextile(address, password)
 }
 
 func initAndStartTextile(mnemonic string, password string) error {
@@ -171,8 +176,8 @@ func initAndStartTextile(mnemonic string, password string) error {
 			astilog.Fatal(fmt.Errorf("create repo failed: %s", err))
 		}
 	}
-
-	return startTextile(repoPath, password)
+	
+	return startTextile(accnt.Address(), password)
 }
 
 func computePosition(bounds *asti.RectangleOptions) (int, int, error) {
@@ -210,10 +215,10 @@ func start(a *asti.Astilectron, w []*asti.Window, _ *asti.Menu, t *asti.Tray, _ 
 		appDir = filepath.Join(home, ".textile")
 	}
 
+	// publicDir contains appDir, so just try to create it all at once
 	if err := os.MkdirAll(appDir, 0755); err != nil {
 		astilog.Fatal(fmt.Errorf("create app dir failed: %s", err))
 	}
-
 	// Look for existing accounts
 	files, err := ioutil.ReadDir(appDir)
 	if err != nil {

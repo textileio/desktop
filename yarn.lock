@@ -1060,22 +1060,23 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@textile/js-http-client@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.7.tgz#fba4241b05ff51c7e2ffd1ecdbb1dc4bc10ff223"
-  integrity sha512-XSgLmYG/9lU88dt1XM4+ihumZcu0JZRfefV5eUP3DwOu4ySuMS+iRCxo8vhqMvUBa8a5Flfe5qgt7PMmeojSQw==
+"@textile/js-http-client@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.9.tgz#a3250a9ead986cdf7a7de0de4f63d52ae27d3257"
+  integrity sha512-XPnfodC74p5ylcVU3qgxGFo6JpijE6DmvjRd3Et2y9kBGAMzRDmKvD1SQloW2Tlw+KKjz5hZHwwI4QKKOyLeiA==
   dependencies:
-    axios "^0.18.0"
     bip39 "^2.5.0"
     bs58 "^4.0.1"
     crc "^3.8.0"
     create-hash "^1.2.0"
     create-hmac "^1.1.7"
-    eventemitter2 "^5.0.1"
+    isomorphic-fetch "^2.2.1"
     tiny-secp256k1 "^1.0.1"
     toposort "^2.0.2"
     tweetnacl "^1.0.1"
     url-parse "^1.4.4"
+    url-toolkit "^2.1.6"
+    web-streams-polyfill "^2.0.3"
 
 "@textile/tslint-rules@^1.0.3":
   version "1.0.3"
@@ -1732,14 +1733,6 @@ aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
-
-axios@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
-  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
-  dependencies:
-    follow-redirects "^1.3.0"
-    is-buffer "^1.1.5"
 
 axobject-query@^2.0.1:
   version "2.0.2"
@@ -4005,11 +3998,6 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-eventemitter2@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-5.0.1.tgz#6197a095d5fb6b57e8942f6fd7eaad63a09c9452"
-  integrity sha1-YZegldX7a1folC9v1+qtY6CclFI=
-
 eventemitter3@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
@@ -4457,7 +4445,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0, follow-redirects@^1.3.0:
+follow-redirects@^1.0.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
   integrity sha512-m/pZQy4Gj287eNy94nivy5wchN3Kp+Q5WgUPNy5lJSZ3sgkVKSYV/ZChMAQVIgx1SqfZ2zBZtPA2YlXIWxxJOQ==
@@ -5814,7 +5802,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
-isomorphic-fetch@^2.1.1:
+isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   integrity sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=
@@ -10941,6 +10929,11 @@ url-parse@^1.4.3, url-parse@^1.4.4:
     querystringify "^2.0.0"
     requires-port "^1.0.0"
 
+url-toolkit@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/url-toolkit/-/url-toolkit-2.1.6.tgz#6d03246499e519aad224c44044a4ae20544154f2"
+  integrity sha512-UaZ2+50am4HwrV2crR/JAf63Q4VvPYphe63WGeoJxeu8gmOm0qxPt+KsukfakPNrX9aymGNEkkaoICwn+OuvBw==
+
 url@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/url/-/url-0.11.0.tgz#3838e97cfc60521eb73c525a8e55bfdd9e2e28f1"
@@ -11126,6 +11119,11 @@ web-namespaces@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-1.1.2.tgz#c8dc267ab639505276bae19e129dbd6ae72b22b4"
   integrity sha512-II+n2ms4mPxK+RnIxRPOw3zwF2jRscdJIUE9BfkKHm4FYEg9+biIoTMnaZF5MpemE3T+VhMLrhbyD4ilkPCSbg==
+
+web-streams-polyfill@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-2.0.3.tgz#0c396f069a5eedc96c711393b12f2c67cf283a00"
+  integrity sha512-pOqiHmL3RBAGS+SgOR42RbPU6nc8/n15N2rsOXFYHLnTfs2Z8QHs8AizOeOaYEnhwPN4+hu3M2D9XvAqzvt6MA==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"

@@ -17,13 +17,16 @@ Join us on our [public Slack channel](https://slack.textile.io/) for news, discu
 ## Table of Contents
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
-- [Background](#background)
-- [Development](#development)
-- [Documentation](#documentation)
-- [Maintainer](#maintainer)
-- [Contributing](#contributing)
-- [Contributors](#contributors)
-- [License](#license)
+- [Textile Desktop _(desktop)_](#textile-desktop-desktop)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Development](#development)
+    - [Commands](#commands)
+  - [Documentation](#documentation)
+  - [Maintainer](#maintainer)
+  - [Contributing](#contributing)
+  - [Contributors](#contributors)
+  - [License](#license)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Background
