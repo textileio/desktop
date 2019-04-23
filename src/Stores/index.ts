@@ -34,6 +34,17 @@ export interface ProfileInfo {
   address: string
 }
 
+export interface AppInfo {
+  appId: string
+  appName: string
+  link: string
+  hash: string
+}
+
+export interface AccountApps {
+  [id: string]: AppInfo
+}
+
 export class AppStore implements Store {
   @computed get dataFolder() {
     return path
@@ -51,6 +62,7 @@ export class AppStore implements Store {
   @observable screen: Screen = 'starting'
   @observable cafes: any[] = []
   @observable notifications: any[] = []
+  @observable apps: AccountApps = {}
   @observable profile?: ProfileInfo = undefined
   constructor() {
     observe(this, 'screen', (change) => {
@@ -74,6 +86,14 @@ export class AppStore implements Store {
               this.addresses = item
             })
             this.screen = (item && item.length > 0) ? 'landing' : 'onboard'
+            break
+          case 'app-update':
+            item.link = (item.link)
+              ? item.link : `${this.gateway}/ipfs/${item.hash}`
+            runInAction('app-update', () => {
+              console.log('Running in action', item.appId)
+              this.apps[item.appId] = item
+            })
             break
           case 'notification':
             item.user.avatar = (item.user.avatar)

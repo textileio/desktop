@@ -115,12 +115,11 @@ func initPagesThread() error {
 
 // Checks that our Pages thread exists before any update attempts
 func pagesThreadExists() bool {
-	for _, thrd := range appNode.Threads() {
-		if thrd.Key == pagesThreadKey {
-			pagesThreadId = thrd.Id
-			pagesThreadPrivKey = thrd.PrivKey
-			return true
-		}
+	thrd := appNode.ThreadByKey(pagesThreadKey)
+	if thrd != nil {
+		pagesThreadId = thrd.Id
+		pagesThreadPrivKey = thrd.PrivKey
+		return true
 	}
 	return false
 }
@@ -159,10 +158,10 @@ func publishIPNS(hash string) error {
 
 // Publishes latest Thread head to IPNS
 func publishPage(hash string) error {
-	fmt.Print("Publishing webpage...")
-	fmt.Printf("\n        ipfs hash: https://gateway.textile.cafe/ipfs/%s\n", hash)
 	// Run any post update scripts
 	postUpdateScript(hash)
+
+	updateTextile(hash)
 
 	// An IPNS update freebie
 	if pagesPublishIPNS == true {

@@ -6,7 +6,8 @@ import { RouteComponentProps } from '@reach/router'
 import BackArrow from '../Components/BackArrow'
 import { Stores } from '../Stores'
 import Moment from 'react-moment'
-const { clipboard } = window.require('electron')
+
+const { clipboard, shell } = window.require('electron')
 
 @connect('store') @observer
 export default class Profile extends ConnectedComponent<RouteComponentProps, Stores> {
@@ -54,6 +55,25 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
       }
     })
   }
+
+  onPagesClick = () => {
+    this.stores.store.fetchCafes().then(() => {
+      if (this.props.navigate) {
+        this.props.navigate('./cafes')
+      }
+    })
+  }
+
+  onAppClick = (appIdentifier: string) => {
+    // Simple now to allow register many appIdentfiers
+    return () => {
+      const pages = this.stores.store.apps[appIdentifier]
+      const { link } = pages
+      const url = link || 'https://gateway.textile.cafe/ipfs/QmbAcNHrge3qrxHghV915c7MnSf6sAJs3ARY7YaYf82k9J'
+      shell.openExternal(url)
+    }
+  }
+
   handleAccountSync = () => {
     this.stores.store.syncAccount()
     this.stores.store.fetchProfile()
@@ -87,7 +107,7 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
             <Segment basic style={{ padding: 0 }}>
               {profile &&
                 <Image
-                  style={{ objectFit: 'cover', width: '150px', height: '150px' }}
+                  style={{ objectFit: 'cover', width: '90px', height: '90px' }}
                   centered
                   circular
                   src={profile.avatar} size='small'
@@ -107,7 +127,7 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
                 </Icon.Group>
               </Label>
             </Segment>
-          <Header as='h4' style={{ margin: '1em 0 0.2em 0'}}>DISPLAY NAME</Header>
+          <Header as='h4' style={{margin: '1em 0 0.2em 0'}}>Display name</Header>
           <Form onSubmit={this.handleDislpayName}>
             <Form.Field>
               <Input
@@ -120,8 +140,9 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
               </Input>
             </Form.Field>
           </Form>
-          <Header as='h4' style={{ margin: '1em 0 0.2em 0' }}>INFO</Header>
+          <Header as='h4' style={{margin: '1em 0 0.2em 0'}}>Account tools</Header>
           <Button.Group basic fluid compact>
+            <Button content='Pages' icon='lab' type='button' onClick={this.onAppClick('pages.textile.io')}/>
             <Button content='Cafes' icon='coffee' type='button' onClick={this.onCafesClick} />
             <Button content='Groups' icon='users' type='button' onClick={this.onGroupsClick}/>
           </Button.Group>

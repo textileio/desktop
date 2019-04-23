@@ -51,7 +51,7 @@ func newWatcher() {
 	// Trigger 2 events after watcher started.
 	go func() {
 		w.Wait()
-		//w.TriggerEvent(watcher.Create, nil)
+		w.TriggerEvent(watcher.Create, nil)
 	}()
 
 	// Start the watching process - it'll check for changes every 100ms.

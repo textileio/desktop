@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e # abort on any error
 
 HASH=${1?param missing - hash.}

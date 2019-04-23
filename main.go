@@ -142,7 +142,7 @@ func startTextile(address string, password string) error {
 	}
 
 	// start the Pages app
-	pages.Start(address, repoPath, node)
+	pages.Start(address, repoPath, node, appUpdate)
 
 	return nil
 }
@@ -176,7 +176,7 @@ func initAndStartTextile(mnemonic string, password string) error {
 			astilog.Fatal(fmt.Errorf("create repo failed: %s", err))
 		}
 	}
-	
+
 	return startTextile(accnt.Address(), password)
 }
 
@@ -269,6 +269,11 @@ func toggleWindow(e asti.Event) bool {
 		}
 	}
 	return false
+}
+
+// Method passed to go-app, Pages. Pages can then update app payload to tray
+func appUpdate(data interface{}) {
+	sendData("app-update", data)
 }
 
 func sendData(name string, data interface{}) {

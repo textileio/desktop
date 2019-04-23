@@ -84,8 +84,6 @@
 
         div.bs-sidebar.hidden-print.affix.well{ display: none; }
       </style>
-    
-    
       
     
     
@@ -259,7 +257,7 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
+    
         <li class="md-nav__item">
   <a href="#setup" title="Setup" class="md-nav__link">
     Setup
@@ -372,7 +370,6 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
         <li class="md-nav__item">
   <a href="#setup" title="Setup" class="md-nav__link">
     Setup
@@ -475,14 +472,23 @@
                 
                 <h1 id="your-decentralized-homepage">Your Decentralized Homepage<a class="headerlink" href="#your-decentralized-homepage" title="Permanent link">&para;</a></h1>
 <p>
-    Do you use Github Pages or S3 to host a simple webpage and love how easy it is? Have you ever added a webpage to IPFS and realized how powerful it could be? <a href="https://textile.io/">Textile Pages</a> now brings the simplicity of S3 and the benefits of <a href="https://ipfs.io/">IPFS</a> together, offering you a simple, reliable method to host your webpage on IPFS. 
+  Textile Pages creates a live folder on your computer to host your webpage. Changes in that folder will automatically get posted to IPFS — Textile ensures that the latest version of your website remains available online even if your computer isn’t. Cool, right?
 </p>
 <p>
-    Textile Pages creates a live folder on your computer to host your webpage. Changes in that folder will automatically get posted to IPFS — Textile ensures that the latest version of your website remains available online even if your computer isn’t. Cool, right?
+    Do you use Github Pages or S3 to host a simple webpage and love how easy it is? Have you ever added a webpage to IPFS and realized how powerful it could be? <a href="https://textile.io/">Textile Pages</a> now brings the simplicity of S3 and the benefits of <a href="https://ipfs.io/">IPFS</a> together, offering you a simple, reliable method to host your webpage on IPFS. 
 </p>
+<div class="admonition info">
+  <p class="admonition-title">Info</p>
+  <p>
+    Your page is instantly published on your local <a href="https://textile.io/">Textile</a> 
+    node and viewable over your local gateway. You can also view it online over any IPFS Gateway, 
+    such as, <a id="textile-gateway" href="https://gateway.textile.cafe/ipfs/QmbAcNHrge3qrxHghV915c7MnSf6sAJs3ARY7YaYf82k9J">gateway.textile.cafe/ipfs/QmbAcNHrge3qrxHghV91...</a> or <a id="ipfs-gateway" href="https://ipfs.io/ipfs/QmbAcNHrge3qrxHghV915c7MnSf6sAJs3ARY7YaYf82k9J">ipfs.io/ipfs/QmbAcNHrge3qrxHghV91...</a>. 
+    Or, as shown below, you can publish it on your own website and domain.
+  </p>
+</div>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<p>Start by running the <a href="https://textile.io/desktop">Textile Desktop</a> app. Every account you add to the Desktop app will automatically have a Textile Pages instance enabled.</p>
-<p>The Pages app will automatically update your homepage when you change it's content as long as Textile is running and you are signed into your account.</p>
+<p>Start by running the <a href="https://textile.io/">Textile Desktop</a> app.</p>
+<p>The Pages app will automatically update your homepage whenever you make edits as long as Textile is running and you are signed into your account.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Any changes you make in your <code class="codehilite">pages</code> folder will automatically be published to IPFS and potentially cached or mirrored on external IPFS peers. Do not add private, sensitive, or illegal content to your <code class="codehilite">pages</code> folder.</p>
@@ -586,5 +592,20 @@
         <script src="https://docs.textile.io/js/sidebar.js"></script>
       
     
+    
+  <script>
+
+      var path = window.location.pathname.split('/');
+      var hash = path[path.length - 1];
+      if (hash && hash.length === 46) {
+        var ipfs = document.getElementById('ipfs-gateway');
+        ipfs.innerHTML = "ipfs.io/ipfs/" + hash.substring(0,15) + "...";
+        ipfs.setAttribute('href', "https://ipfs.io/ipfs/" + hash);
+
+        var textile = document.getElementById('textile-gateway');
+        textile.innerHTML = "gateway.textile.cafe/ipfs/" + hash.substring(0,15) + "...";
+        textile.setAttribute('href', "https://gateway.textile.cafe/ipfs/" + hash);
+      }
+  </script>
   </body>
 </html>
