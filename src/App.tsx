@@ -7,7 +7,7 @@ import Create from './Containers/Create'
 import Landing from './Containers/Landing'
 import Main from './Containers/Main'
 import Cafes from './Containers/Cafes'
-import Groups from './Containers/Groups'
+import Threads from './Containers/Threads'
 import Basic from './Components/Basic'
 import Splash from './Components/Splash'
 import Start from './Containers/Start'
@@ -33,7 +33,7 @@ class App extends ConnectedComponent<{}, Stores> {
             <Basic path='/profile'>
               <Profile path='/' />
               <Cafes path='/cafes' />
-              <Groups path='/groups' />
+              <Threads path='/threads' />
             </Basic>
           </Basic>
         </Router >

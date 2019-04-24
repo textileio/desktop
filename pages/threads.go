@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"errors"
 	"fmt"
+	ipld "github.com/ipfs/go-ipld-format"
 	iface "github.com/ipfs/interface-go-ipfs-core"
 	crypto "github.com/libp2p/go-libp2p-crypto"
 	"github.com/textileio/go-textile/ipfs"
@@ -18,6 +19,15 @@ import (
 
 // Adds a single file to the app thread: pagesThreadId
 func addFile(path string) (string, error) {
+	fi, err := os.Stat(path)
+	if err != nil {
+		return "", err
+	}
+	// get the size
+	size := fi.Size()
+	if size > 262144 {
+		return "", fmt.Errorf("Pages upload too large: %s", size)
+	}
 	thrd := appNode.Thread(pagesThreadId)
 	if thrd == nil {
 		return "", fmt.Errorf("Pages thread not found: %s", pagesThreadId)
@@ -62,11 +72,38 @@ func addFile(path string) (string, error) {
 		mdir.Pin[added.Hash] = writeDir + added.Hash
 	}
 
-	for hash, pth := range mdir.Pin {
-		if err := writeFileData(hash, pth); err != nil {
+	var node ipld.Node
+	var keys *pb.Keys
+	file := mdir.Dir.Files[schema.SingleFileTag]
+	if file != nil {
+
+		node, keys, err = appNode.AddNodeFromFiles([]*pb.FileIndex{file})
+		if err != nil {
+			return "", err
+		}
+
+	} else {
+
+		rdir := &pb.Directory{Files: make(map[string]*pb.FileIndex)}
+		for k, file := range mdir.Dir.Files {
+			rdir.Files[k] = file
+		}
+
+		node, keys, err = appNode.AddNodeFromDirs(&pb.DirectoryList{Items: []*pb.Directory{rdir}})
+		if err != nil {
 			return "", err
 		}
 	}
+
+	if node == nil {
+		return "", errors.New("no files found")
+	}
+
+	_, err = thrd.AddFiles(node, "", keys.Files)
+	if err != nil {
+		return "", err
+	}
+
 	return added.Hash, nil
 }
 

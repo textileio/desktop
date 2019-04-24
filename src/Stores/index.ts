@@ -57,7 +57,7 @@ export class AppStore implements Store {
   // TODO: Maybe this should just be strings and do the conversion in components?
   @observable addresses: string[] = []
   @observable currentAddress: string = ''
-  @observable groups: any[] = []
+  @observable threads: any[] = []
   @observable gateway = 'http://127.0.0.1:5052'
   @observable screen: Screen = 'starting'
   @observable cafes: any[] = []
@@ -206,11 +206,11 @@ export class AppStore implements Store {
       console.log(err)
     }
   }
-  @action async fetchGroups() {
+  @action async fetchThreads() {
     try {
-      const groups = await textile.threads.list()
-      runInAction('fetchGroups', () => {
-        this.groups = groups.items
+      const threads = await textile.threads.list()
+      runInAction('fetchThreads', () => {
+        this.threads = threads.items
       })
     } catch (err) {
       console.log(err)

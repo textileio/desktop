@@ -10,7 +10,7 @@ import Moment from 'react-moment'
 const { shell } = window.require('electron')
 
 @connect('store') @observer
-export default class Groups extends ConnectedComponent<RouteComponentProps, Stores> {
+export default class Threads extends ConnectedComponent<RouteComponentProps, Stores> {
   state = {
     isLoading: false,
     isAdding: false,
@@ -18,10 +18,10 @@ export default class Groups extends ConnectedComponent<RouteComponentProps, Stor
     currentGroup: ''
   }
   componentDidMount() {
-    this.stores.store.fetchGroups()
+    this.stores.store.fetchThreads()
   }
   handleRefreshClick = () => {
-    this.stores.store.fetchGroups()
+    this.stores.store.fetchThreads()
     this.setState({ isLoading: true })
     // Show spinner to indicate work is being done
     setTimeout(() => this.setState({ isLoading: false}), 3000)
@@ -37,23 +37,23 @@ export default class Groups extends ConnectedComponent<RouteComponentProps, Stor
     // this.stores.store.removeGroup(this.state.currentGroup).then(this.handleDone)
   }
   render() {
-    const { groups } = this.stores.store
+    const { threads } = this.stores.store
     return (
       <div style={{ height: '100vh' }}>
         <Segment basic>
           <Header as='h3'>
-            GROUPS
+            Threads
           <Header.Subheader>
-              View and edit Groups
+              View and edit Threads
             </Header.Subheader>
           </Header>
           <Card.Group style={{ height: '85vh', overflowY: 'auto' }}>
-            {groups && groups.map((item: any) => this.renderItem(item))}
+            {threads && threads.map((item: any) => this.renderItem(item))}
           </Card.Group>
         </Segment>
         {/* <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
           <Button
-            // disabled={groups.length < 1}
+            // disabled={threads.length < 1}
             style={{ borderRadius: 0 }}
             loading={this.state.isLoading}
             onClick={this.handleRefreshClick}

@@ -16,6 +16,7 @@ require (
 	github.com/gobuffalo/packr/v2 v2.2.0 // indirect
 	github.com/golang/protobuf v1.3.1
 	github.com/ipfs/go-ipfs v0.4.20
+	github.com/ipfs/go-ipld-format v0.0.1
 	github.com/ipfs/interface-go-ipfs-core v0.0.6
 	github.com/kr/pty v1.1.4 // indirect
 	github.com/libp2p/go-libp2p-crypto v0.0.1

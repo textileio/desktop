@@ -48,10 +48,10 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
       }
     })
   }
-  onGroupsClick = () => {
-    this.stores.store.fetchGroups().then(() => {
+  onThreadsClick = () => {
+    this.stores.store.fetchThreads().then(() => {
       if (this.props.navigate) {
-        this.props.navigate('./groups')
+        this.props.navigate('./threads')
       }
     })
   }
@@ -144,7 +144,7 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
           <Button.Group basic fluid compact>
             <Button content='Pages' icon='lab' type='button' onClick={this.onAppClick('pages.textile.io')}/>
             <Button content='Cafes' icon='coffee' type='button' onClick={this.onCafesClick} />
-            <Button content='Groups' icon='users' type='button' onClick={this.onGroupsClick}/>
+            <Button content='Threads' icon='users' type='button' onClick={this.onThreadsClick}/>
           </Button.Group>
         </Segment>
         <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
