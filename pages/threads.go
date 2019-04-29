@@ -120,7 +120,7 @@ func createThread() (string, crypto.PrivKey, error) {
 
 	config.Type = pb.Thread_READ_ONLY
 	config.Sharing = pb.Thread_SHARED
-	config.Members = util.SplitString("", ",")
+	config.Whitelist = util.SplitString("", ",")
 
 	// make a new secret
 	sk, _, err := crypto.GenerateEd25519Key(rand.Reader)

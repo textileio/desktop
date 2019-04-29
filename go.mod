@@ -27,9 +27,11 @@ require (
 	github.com/shurcooL/httpfs v0.0.0-20181222201310-74dc9339e414 // indirect
 	github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
-	github.com/textileio/go-textile v0.1.12-rc2
+	github.com/textileio/go-textile v0.1.12-rc3
 	golang.org/x/crypto v0.0.0-20190417174047-f416ebab96af // indirect
 	golang.org/x/net v0.0.0-20190415214537-1da14a5a36f2 // indirect
 	golang.org/x/sys v0.0.0-20190416152802-12500544f89f // indirect
 	golang.org/x/tools v0.0.0-20190417213810-f6abc2cac8bf // indirect
 )
+
+replace github.com/textileio/go-textile v0.1.12-rc3 => ../go-textile
