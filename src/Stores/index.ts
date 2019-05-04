@@ -1,15 +1,10 @@
 // tslint:disable: no-console
 import { observe, action, observable, runInAction, computed } from 'mobx'
-import { Textile, Wallet } from '@textile/js-http-client'
+import textile, { Wallet } from '@textile/js-http-client'
 import { createMemorySource, createHistory } from '@reach/router'
 import moment, { utc } from 'moment'
 const { remote } = window.require('electron')
 import path from 'path'
-
-const textile = new Textile({
-  url: 'http://127.0.0.1',
-  port: 40602
-})
 
 const AVATAR_KEY = 'profile'
 const DEFAULT_AVATAR = 'https://react.semantic-ui.com/images/wireframe/square-image.png'
@@ -261,7 +256,7 @@ export class AppStore implements Store {
             'Profile Images', file.hash, AVATAR_KEY, 'private', 'not_shared'
           )
       }
-      const addedFile = await textile.files.addFile(avatarFile, 'avatar', avatarThread.id)
+      const addedFile = await textile.files.add(avatarFile, 'avatar', avatarThread.id)
       await textile.profile.setAvatar(addedFile.files[0].links.large.hash)
       this.fetchProfile()
     }

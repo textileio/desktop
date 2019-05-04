@@ -170,7 +170,7 @@ func initAndStartTextile(mnemonic string, password string) error {
 			LogToDisk:   true,
 			Debug:       true,
 			GatewayAddr: fmt.Sprintf("127.0.0.1:5052"),
-			ApiAddr:     fmt.Sprintf("127.0.0.1:40602"),
+			ApiAddr:     fmt.Sprintf("127.0.0.1:40600"),
 		}
 		if err := core.InitRepo(initc); err != nil {
 			astilog.Fatal(fmt.Errorf("create repo failed: %s", err))

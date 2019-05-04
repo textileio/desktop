@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "@textile/js-http-client": "^0.2.9",
+    "@textile/js-http-client": "0.2.15",
     "@types/react-qr-reader": "^2.1.2",
     "@types/zxcvbn": "^4.4.0",
     "electron": "^4.1.0",

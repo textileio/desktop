@@ -1060,10 +1060,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@textile/js-http-client@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.9.tgz#a3250a9ead986cdf7a7de0de4f63d52ae27d3257"
-  integrity sha512-XPnfodC74p5ylcVU3qgxGFo6JpijE6DmvjRd3Et2y9kBGAMzRDmKvD1SQloW2Tlw+KKjz5hZHwwI4QKKOyLeiA==
+"@textile/js-http-client@0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.14.tgz#441ef839f3c1411d49d5362803585a03e542a2a1"
+  integrity sha512-NhpC2NyVqhoOsH5oiWBZM/VrRnkKW5q+WLzuNU0cEz03Zma5HJ4OBMZ9C9ocbI0+TrJxLmS+FTMSLH7iRcSr7g==
   dependencies:
     bip39 "^2.5.0"
     bs58 "^4.0.1"
@@ -8849,7 +8849,7 @@ querystring@0.2.0:
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
 
-querystringify@^2.0.0:
+querystringify@^2.0.0, querystringify@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
@@ -10921,12 +10921,20 @@ url-loader@1.1.2:
     mime "^2.0.3"
     schema-utils "^1.0.0"
 
-url-parse@^1.4.3, url-parse@^1.4.4:
+url-parse@^1.4.3:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.6.tgz#baf91d6e6783c8a795eb476892ffef2737fc0456"
   integrity sha512-/B8AD9iQ01seoXmXf9z/MjLZQIdOoYl/+gvsQF6+mpnxaTfG9P7srYaiqaDMyKkR36XMXfhqSHss5MyFAO8lew==
   dependencies:
     querystringify "^2.0.0"
+    requires-port "^1.0.0"
+
+url-parse@^1.4.4:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
+  integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
+  dependencies:
+    querystringify "^2.1.1"
     requires-port "^1.0.0"
 
 url-toolkit@^2.1.6:

@@ -27,6 +27,8 @@ github.com/asticode/go-astilectron-bootstrap v0.0.0-20180616141213-b3211646d205 
 github.com/asticode/go-astilectron-bootstrap v0.0.0-20180616141213-b3211646d205/go.mod h1:SRaKevdZAZLWX+GCK49MNPYnHGjcNEP4XN3swtIWC3Q=
 github.com/asticode/go-astilectron-bundler v0.0.0-20190406155441-5fc4c9f0c990 h1:zqGOFT/wWhicuZJXoxgWOMey1R5DO1r04I4YdFYHycI=
 github.com/asticode/go-astilectron-bundler v0.0.0-20190406155441-5fc4c9f0c990/go.mod h1:7iR/tJj8CDwh3dlELvVf/GzgPzRoj+5t4zqiAPLOZfI=
+github.com/asticode/go-astilectron-bundler v0.0.0-20190426172205-155c2a10bbb1 h1:T3veYqBjxmQ7Jz43DDxjvfTnn/xfoxvwbPT65N+qzDk=
+github.com/asticode/go-astilectron-bundler v0.0.0-20190426172205-155c2a10bbb1/go.mod h1:7iR/tJj8CDwh3dlELvVf/GzgPzRoj+5t4zqiAPLOZfI=
 github.com/asticode/go-astilog v1.0.0 h1:l9tek0K7KoQCmhZ7cvBTtVu0NsKpS9hB6jBLtQyxWYk=
 github.com/asticode/go-astilog v1.0.0/go.mod h1:Vg6SGUYb3tVyFeGQe0Mqmh0RMygpwy+huFKcyL92EVc=
 github.com/asticode/go-astitools v1.0.0 h1:B5l3sI+hgQJsUNyLgd6pHrhH75GAtFzZVIirso7oFeg=
@@ -318,6 +320,7 @@ github.com/karrick/godirwalk v1.8.0/go.mod h1:H5KPZjojv4lE+QYImBI8xVtrBRgYrIVsaR
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/kkdai/bstream v0.0.0-20161212061736-f391b8402d23/go.mod h1:J+Gs4SYgM6CZQHDETBtE9HaSEkGmuNXF86RwHhHUvq4=
+github.com/konsorten/go-windows-terminal-sequences v1.0.1 h1:mweAR1A6xJ3oS2pRaGiHgQ4OO8tzTaLawm8vnODuwDk=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/konsorten/go-windows-terminal-sequences v1.0.2 h1:DB17ag19krx9CFsz4o3enTrPXyIXCl+2iCXH/aMAp9s=
 github.com/konsorten/go-windows-terminal-sequences v1.0.2/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
@@ -582,6 +585,8 @@ github.com/textileio/go-textile v0.1.12-rc1 h1:W5BJTg33Qxy1YJyhrXDPqsL2+LA4Fovj8
 github.com/textileio/go-textile v0.1.12-rc1/go.mod h1:T4SOR8toiEjNu1iP+n4u8rxUJk+IpivwpRUWkQ+SgZI=
 github.com/textileio/go-textile v0.1.12-rc2 h1:E91+aKkBZAOjocXMXKHhUMcBdeSLkHFV+K/663MSEFY=
 github.com/textileio/go-textile v0.1.12-rc2/go.mod h1:KO7HJPYHOHRUDL1icn3JjvRIp8pJ6pfe3XoDQcEmxcY=
+github.com/textileio/go-textile v0.1.12-rc3 h1:rwceymt+/m7hGTZI99uxpaGEnttsx8PxNLEet5Yukpc=
+github.com/textileio/go-textile v0.1.12-rc3/go.mod h1:EprXr147/jzdj6jSUtLK8g9zH+BR0L1fcnd5frvp/Ps=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e/go.mod h1:XDKHRm5ThF8YJjx001LtgelzsoaEcvnA7lVWz9EeX3g=
 github.com/tyler-smith/go-bip39 v0.0.0-20181017060643-dbb3b84ba2ef h1:luEzjJzktS9eU0CmI0uApXHLP/lKzOoRPrJhd71J8ik=
 github.com/tyler-smith/go-bip39 v0.0.0-20181017060643-dbb3b84ba2ef/go.mod h1:sJ5fKU0s6JVwZjjcUEX2zFOnvq0ASQ2K9Zr6cf67kNs=

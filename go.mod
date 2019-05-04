@@ -7,7 +7,7 @@ require (
 	github.com/asticode/go-astiamqp v1.0.0 // indirect
 	github.com/asticode/go-astilectron v0.0.0-20190411111508-8e68f812e8a2
 	github.com/asticode/go-astilectron-bootstrap v0.0.0-20180616141213-b3211646d205
-	github.com/asticode/go-astilectron-bundler v0.0.0-20190406155441-5fc4c9f0c990 // indirect
+	github.com/asticode/go-astilectron-bundler v0.0.0-20190426172205-155c2a10bbb1 // indirect
 	github.com/asticode/go-astilog v1.0.0
 	github.com/asticode/go-bindata v0.0.0-20151023091102-a0ff2567cfb7 // indirect
 	github.com/fsnotify/fsnotify v1.4.7

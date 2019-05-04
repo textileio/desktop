@@ -10,7 +10,7 @@ import path from 'path'
 
 @connect('store') @observer
 export default class Summary extends ConnectedComponent<RouteComponentProps, Stores> {
-  onAPIClick = () => { shell.openExternal('http://127.0.0.1:40602/docs/index.html') }
+  onAPIClick = () => { shell.openExternal('http://127.0.0.1:40600/docs/index.html') }
   onQuitClick = () => {
     this.stores.store.sendMessage({ name: 'quit' })
   }
