@@ -33,5 +33,3 @@ require (
 	golang.org/x/sys v0.0.0-20190416152802-12500544f89f // indirect
 	golang.org/x/tools v0.0.0-20190417213810-f6abc2cac8bf // indirect
 )
-
-replace github.com/textileio/go-textile v0.1.12-rc3 => ../go-textile
