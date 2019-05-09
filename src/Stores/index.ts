@@ -206,7 +206,7 @@ export class AppStore implements Store {
         this.profile = {
           name: contact.name ? contact.name : contact.address.slice(-8),
           address: contact.address,
-          avatar: contact.avatar ? `${this.gateway}/ipfs/${contact.avatar}/0/small/d` : DEFAULT_AVATAR,
+          avatar: contact.avatar ? `${this.gateway}/ipfs/${contact.avatar}/0/large/d` : DEFAULT_AVATAR,
           date: updated || utc().format()
         }
       })
