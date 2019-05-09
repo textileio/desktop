@@ -169,7 +169,7 @@ func initAndStartTextile(mnemonic string, password string) error {
 			RepoPath:    repoPath,
 			LogToDisk:   true,
 			Debug:       true,
-			GatewayAddr: fmt.Sprintf("127.0.0.1:5052"),
+			GatewayAddr: fmt.Sprintf("127.0.0.1:5050"),
 			ApiAddr:     fmt.Sprintf("127.0.0.1:40600"),
 		}
 		if err := core.InitRepo(initc); err != nil {
@@ -185,7 +185,7 @@ func computePosition(bounds *asti.RectangleOptions) (int, int, error) {
 		x := *(bounds.X)
 		y := *(bounds.Y)
 		// Center window horizontally below the tray icon
-		x = x - (WindowWidth / 2) + 16
+		x = x - (WindowWidth / 2) + 10
 		// Position window 16 pixels vertically below the tray icon
 		y = y + 16
 		return x, y, nil
@@ -230,7 +230,7 @@ func start(a *asti.Astilectron, w []*asti.Window, _ *asti.Menu, t *asti.Tray, _ 
 		if f.IsDir() {
 			kp, err := keypair.Parse(f.Name())
 			if err != nil {
-				astilog.Errorf("invalid account address encountered (%s), skipping", err)
+				astilog.Warnf("invalid account address (%s), ignoring", err)
 			} else {
 				addresses = append(addresses, kp.Address())
 			}
@@ -303,9 +303,9 @@ func handleMessage(w *asti.Window, m bootstrap.MessageIn) (interface{}, error) {
 			err = errors.New("error provisioning Textile account")
 		}
 		if err != nil {
-			return nil, err
+			return err.Error(), nil
 		}
-		return true, nil
+		return nil, nil
 	case "hide":
 		w.Hide()
 	case "quit":
@@ -314,5 +314,5 @@ func handleMessage(w *asti.Window, m bootstrap.MessageIn) (interface{}, error) {
 	default:
 		return nil, nil
 	}
-	return true, nil
+	return nil, nil
 }

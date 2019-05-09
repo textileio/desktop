@@ -73,24 +73,11 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
       shell.openExternal(url)
     }
   }
-
-  handleAccountSync = () => {
-    this.stores.store.syncAccount()
-    this.stores.store.fetchProfile()
-    this.setState({ isLoading: true })
-    // Show spinner to indicate work is being done
-    setTimeout(() => this.setState({ isLoading: false }), 3000)
-  }
-  handleLogout = () => {
-    if (this.props.navigate) {
-      this.props.navigate('/landing')
-    }
-  }
   render() {
     const { profile } = this.stores.store
     return (
-      <div style={{ height: '100vh' }}>
-        <Segment basic style={{ height: '100vh' }}>
+      <div style={{ height: 'calc(100vh - 1em)' }}>
+        <Segment basic style={{ height: 'calc(100vh - 1em)' }}>
           <Header as='h3' onClick={this.onAddressClick}>
             ACCOUNT
             <Header.Subheader>
@@ -147,18 +134,6 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
             <Button content='Threads' icon='users' type='button' onClick={this.onThreadsClick}/>
           </Button.Group>
         </Segment>
-        <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-          <Button
-            style={{ borderRadius: 0 }}
-            loading={this.state.isLoading}
-            content='Sync' icon='refresh' positive type='button'
-            onClick={this.handleAccountSync}/>
-          <Button
-            disabled
-            style={{ borderRadius: 0 }}
-            content='Log-out' icon='log out' type='button'
-            onClick={this.handleLogout} />
-        </Button.Group>
         <BackArrow onClick={() => {
           if (this.props.navigate) {
             this.props.navigate('..')

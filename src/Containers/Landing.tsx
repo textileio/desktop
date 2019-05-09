@@ -1,5 +1,5 @@
-import React, { SyntheticEvent } from 'react'
-import { Button, Header, Image, Segment, Form, Icon, DropdownItemProps } from 'semantic-ui-react'
+import React, { SyntheticEvent, createRef } from 'react'
+import { Button, Header, Image, Segment, Form, Icon, DropdownItemProps, Ref } from 'semantic-ui-react'
 import { RouteComponentProps } from '@reach/router'
 import { ConnectedComponent, connect } from '../Components/ConnectedComponent'
 import { observer } from 'mobx-react'
@@ -20,6 +20,7 @@ export default class Landing extends ConnectedComponent<RouteComponentProps, Sto
     password: '',
     passType: 'password'
   }
+  private loginForm = createRef<HTMLFormElement>()
   componentDidMount() {
     const { addresses } = this.stores.store
     this.setState({ address: addresses.length > 0 ? addresses[0] : '' })
@@ -41,47 +42,49 @@ export default class Landing extends ConnectedComponent<RouteComponentProps, Sto
     })
     return (
       <div>
-        <Form onSubmit={this.handleLogin} style={{ height: '100vh' }}>
-          <Segment basic>
-            <Image centered size='small' src={NotificationsImage} />
-            <Header as='h3'>
-              Welcome back!
+        <Ref innerRef={this.loginForm}>
+          <Form onSubmit={this.handleLogin}>
+            <Segment basic>
+              <Image centered size='small' src={NotificationsImage} />
+              <Header as='h3'>
+                Welcome back!
               <Header.Subheader>
-                Log-in using an existing account, or create a new one.
+                  Log-in using an existing account, or create a new one.
               </Header.Subheader>
-            </Header>
-            <Form.Field title='Choose existing account'>
-              <label>ACCOUNTS</label>
-              <Form.Select
-                autoFocus
-                name='address'
-                placeholder='Account Address'
-                options={options}
-                defaultValue={addresses.length > 0 ? addresses[0] : ''}
-                onChange={(e: SyntheticEvent, data: any) => this.setState({ address: data.value })}
-              />
-            </Form.Field>
-            <Form.Field title={'Enter your password (can be left blank)'}>
-              <label>PASSWORD</label>
-              <Form.Input
-                name='password'
-                type={this.state.passType}
-                value={this.state.password}
-                placeholder='Password...'
-                icon={<Icon
-                  name={this.state.passType === 'password' ? 'eye' : 'eye slash'}
-                  link
-                  onClick={this.togglePassType}
-                />}
-                onChange={(e: SyntheticEvent, data: any) => this.setState({ password: data.value })}
-              />
-            </Form.Field>
-          </Segment>
-          <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-            <Button style={{ borderRadius: 0 }} positive content='Sign-in' icon='sign-in' type='submit' />
-            <Button style={{ borderRadius: 0 }} content='New' icon='key' type='button' onClick={this.handleCreate} />
-          </Button.Group>
-        </Form>
+              </Header>
+              <Form.Field title='Choose existing account'>
+                <label>ACCOUNTS</label>
+                <Form.Select
+                  autoFocus
+                  name='address'
+                  placeholder='Account Address'
+                  options={options}
+                  defaultValue={addresses.length > 0 ? addresses[0] : ''}
+                  onChange={(e: SyntheticEvent, data: any) => this.setState({ address: data.value })}
+                />
+              </Form.Field>
+              <Form.Field title={'Enter your password (can be left blank)'}>
+                <label>PASSWORD</label>
+                <Form.Input
+                  name='password'
+                  type={this.state.passType}
+                  value={this.state.password}
+                  placeholder='Password...'
+                  icon={<Icon
+                    name={this.state.passType === 'password' ? 'eye' : 'eye slash'}
+                    link
+                    onClick={this.togglePassType}
+                  />}
+                  onChange={(e: SyntheticEvent, data: any) => this.setState({ password: data.value })}
+                />
+              </Form.Field>
+            </Segment>
+          </Form>
+        </Ref>
+        <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
+          <Button style={{ borderRadius: 0 }} content='Sign-in' icon='sign-in' type='button' onClick={this.handleLogin}/>
+          <Button style={{ borderRadius: 0 }} content='New' icon='key' type='button' onClick={this.handleCreate} />
+        </Button.Group>
         <BackArrow name='close' onClick={() => { this.stores.store.sendMessage({ name: 'quit' }) }} />
       </div>
     )

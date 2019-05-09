@@ -13,7 +13,7 @@ export default class Notifications extends ConnectedComponent<{}, Stores> {
   render() {
     const { notifications } = this.stores.store
     return (
-      <Feed size='small'>
+      <Feed size='small' style={{ overflowX: 'hidden' }}>
         {notifications && notifications.map((item: any) => <Notification key={item.id} item={item} />)}
       </Feed>
     )

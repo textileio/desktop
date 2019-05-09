@@ -43,7 +43,7 @@ const getWindowPosition = () => {
 }
 
 const createTray = () => {
-  const pathname = path.join(__dirname, 'assets', 'tray.png')
+  const pathname = path.join(__dirname, 'assets', 'TrayTemplate.png')
   tray = new Tray(pathname)
   tray.on('right-click', toggleWindow)
   tray.on('double-click', toggleWindow)

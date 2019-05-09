@@ -13,6 +13,11 @@ var (
 
 // bootstrapApp runs bootstrap. Moved to own file so we don't have to see Asset and RestoreAsset highlighed as errors :)
 func bootstrapApp() {
+	homepage := "../index.html"
+	if *debug {
+		homepage = "http://127.0.0.1:3000"
+		astilog.Info("running in debug/dev mode")
+	}
 	if err := bootstrap.Run(bootstrap.Options{
 		Asset:    Asset,
 		AssetDir: AssetDir,
@@ -21,15 +26,15 @@ func bootstrapApp() {
 			AppIconDarwinPath:  "resources/assets/icon.icns",
 			AppIconDefaultPath: "resources/assets/icon.png",
 		},
-		Debug:         *debug,
+		Debug:         !*debug,
 		OnWait:        start,
 		RestoreAssets: RestoreAssets,
 		TrayOptions: &astilectron.TrayOptions{
-			Image:   astilectron.PtrStr("resources/assets/tray.png"),
+			Image:   astilectron.PtrStr("resources/assets/TrayTemplate.png"),
 			Tooltip: astilectron.PtrStr("Textile"),
 		},
 		Windows: []*bootstrap.Window{{
-			Homepage:       "../index.html",
+			Homepage:       homepage,
 			MessageHandler: handleMessage,
 			Options: &astilectron.WindowOptions{
 				Width:          astilectron.PtrInt(300),

@@ -1,45 +1,21 @@
-import React, { createRef, SyntheticEvent } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
-import { Segment, Label, Icon, Image, Input, Form, Header, Button, Card } from 'semantic-ui-react'
+import { Segment, Icon, Header, Card } from 'semantic-ui-react'
 import { ConnectedComponent, connect } from '../Components/ConnectedComponent'
 import { RouteComponentProps } from '@reach/router'
 import BackArrow from '../Components/BackArrow'
-import AddCafeModal from '../Components/AddCafeModal'
 import { Stores } from '../Stores'
 import Moment from 'react-moment'
-const { shell } = window.require('electron')
 
 @connect('store') @observer
 export default class Threads extends ConnectedComponent<RouteComponentProps, Stores> {
-  state = {
-    isLoading: false,
-    isAdding: false,
-    isRemoving: false,
-    currentGroup: ''
-  }
   componentDidMount() {
     this.stores.store.fetchThreads()
-  }
-  handleRefreshClick = () => {
-    this.stores.store.fetchThreads()
-    this.setState({ isLoading: true })
-    // Show spinner to indicate work is being done
-    setTimeout(() => this.setState({ isLoading: false}), 3000)
-  }
-  handleAddGroup = (data: any) => {
-    return
-  }
-  handleShowRemove = (id: string) => {
-    this.setState({ isRemoving: true, currentGroup: id })
-  }
-  handleDone = () => this.setState({ currentGroup: '', isRemoving: false })
-  handleConfirm = () => {
-    // this.stores.store.removeGroup(this.state.currentGroup).then(this.handleDone)
   }
   render() {
     const { threads } = this.stores.store
     return (
-      <div style={{ height: '100vh' }}>
+      <div>
         <Segment basic>
           <Header as='h3'>
             Threads
@@ -51,24 +27,6 @@ export default class Threads extends ConnectedComponent<RouteComponentProps, Sto
             {threads && threads.map((item: any) => this.renderItem(item))}
           </Card.Group>
         </Segment>
-        {/* <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-          <Button
-            // disabled={threads.length < 1}
-            style={{ borderRadius: 0 }}
-            loading={this.state.isLoading}
-            onClick={this.handleRefreshClick}
-            content='Refresh' icon='refresh'
-            positive type='button' /> */}
-          {/* <AddGroupModal
-            open={this.state.isAdding}
-            onClose={() => { this.setState({isAdding: false}) }}
-            handleCafeAdd={this.handleAddGroup} trigger={
-            <Button
-              onClick={() => { this.setState({ isAdding: true }) }}
-              style={{ borderRadius: 0 }}
-              content='Add' icon='plus' type='button'/>
-          }/> */}
-        {/* </Button.Group> */}
         <BackArrow onClick={() => {
           if (this.props.navigate) {
             this.props.navigate('..')
@@ -93,11 +51,6 @@ export default class Threads extends ConnectedComponent<RouteComponentProps, Sto
         <Card.Content extra>
           Updated <Moment fromNow>{item.head_block.date}</Moment>
         </Card.Content>
-        <Icon
-          style={{ position: 'absolute', right: '5px', top: '5px' }}
-          link name='close'
-          onClick={() => { this.handleShowRemove(item.id) }}
-        />
       </Card>
     )
   }

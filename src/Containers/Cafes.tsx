@@ -1,6 +1,6 @@
-import React, { createRef, SyntheticEvent } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
-import { Segment, Label, Icon, Image, Input, Form, Header, Button, Card } from 'semantic-ui-react'
+import { Segment, Icon, Header, Button, Card } from 'semantic-ui-react'
 import { ConnectedComponent, connect } from '../Components/ConnectedComponent'
 import { RouteComponentProps } from '@reach/router'
 import BackArrow from '../Components/BackArrow'
@@ -35,8 +35,8 @@ export default class Cafes extends ConnectedComponent<RouteComponentProps, Store
   render() {
     const { cafes } = this.stores.store
     return (
-      <div style={{ height: '100vh' }}>
-        <Segment basic style={{ height: 'calc(100vh-50px)'}}>
+      <div>
+        <Segment basic>
           <Header as='h3'>
             CAFES
           <Header.Subheader>
@@ -54,7 +54,7 @@ export default class Cafes extends ConnectedComponent<RouteComponentProps, Store
             loading={this.state.isLoading}
             onClick={this.handleMessagesClick}
             content='Messages' icon='refresh'
-            positive type='button' />
+            type='button' />
           <AddCafeModal
             open={this.state.isAdding}
             onClose={() => { this.setState({isAdding: false}) }}

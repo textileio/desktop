@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import BackArrow from '../Components/BackArrow'
-import { Image, Dimmer } from 'semantic-ui-react'
+import { Image, Dimmer, Header } from 'semantic-ui-react'
 import Pulse from 'react-reveal/Pulse'
 import Logo from '../Assets/LaunchLogo@3x.png'
 import { ConnectedComponent, connect } from '../Components/ConnectedComponent'
@@ -13,10 +13,13 @@ export default class Splash extends ConnectedComponent<RouteComponentProps, Stor
   render() {
     return (
       <Dimmer inverted active>
+        <BackArrow name='close' onClick={() => { this.stores.store.sendMessage({ name: 'quit' }) }} />
         <Pulse forever>
           <Image centered verticalAlign='middle' size='small' src={Logo} />
         </Pulse>
-        <BackArrow name='close' onClick={() => { this.stores.store.sendMessage({ name: 'quit' }) }} />
+        <Header as='h2' inverted style={{ color: 'black' }}>
+          {this.stores.store.error}
+        </Header>
       </Dimmer>
     )
   }

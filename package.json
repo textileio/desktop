@@ -29,7 +29,7 @@
     "credit": "node ./scripts/contributors.js",
     "lint": "./node_modules/tslint/bin/tslint  -c tslint.json --project .",
     "start": "craco start",
-    "dev": "concurrently \"cross-env BROWSER=none yarn craco start\" \"wait-on http://localhost:3000 && electron ./public/electron.ts\"",
+    "dev": "concurrently \"cross-env BROWSER=none yarn craco start\" \"wait-on http://localhost:3000\"",
     "predist": "yarn build",
     "dist": "./scripts/bundle.sh",
     "build": "craco build",

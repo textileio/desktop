@@ -13,7 +13,7 @@ export default class Onboarding extends ConnectedComponent<RouteComponentProps, 
   handleLogin = () => this.props.navigate && this.props.navigate('./login')
   render() {
     return (
-      <div style={{ height: '100vh' }}>
+      <div>
         <Segment basic>
           <Image centered size='medium' src={SecurityImage} />
           <Header as='h3'>
@@ -25,7 +25,7 @@ export default class Onboarding extends ConnectedComponent<RouteComponentProps, 
           </Header>
         </Segment>
         <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-          <Button style={{ borderRadius: 0 }} positive content='Create' icon='key' type='button' onClick={this.handleCreate} />
+          <Button style={{ borderRadius: 0 }} content='Create' icon='key' type='button' onClick={this.handleCreate} />
           <Button style={{ borderRadius: 0 }} content='Sign-in' icon='sign-in' type='button' onClick={this.handleLogin} />
         </Button.Group>
         <BackArrow name='close' onClick={() => { this.stores.store.sendMessage({ name: 'quit' }) }} />

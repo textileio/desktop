@@ -42,24 +42,41 @@ export interface AccountApps {
 
 export class AppStore implements Store {
   @computed get dataFolder() {
-    return path
+    const folder = path
       .join(remote.app.getPath('userData'), this.currentAddress)
       // Replace Electron in dev envs
       .replace('Electron', 'Textile')
+    return folder
   }
   // Observables
   @observable history = history
   // TODO: Maybe this should just be strings and do the conversion in components?
   @observable addresses: string[] = []
+  @observable error: string = ''
   @observable currentAddress: string = ''
   @observable threads: any[] = []
-  @observable gateway = 'http://127.0.0.1:5052'
+  @observable gateway = 'http://127.0.0.1:5050'
   @observable screen: Screen = 'starting'
   @observable cafes: any[] = []
   @observable notifications: any[] = []
   @observable apps: AccountApps = {}
   @observable profile?: ProfileInfo = undefined
   constructor() {
+    textile.utils.online().then((online: boolean) => {
+      if (online) {
+        runInAction('constructor', () => {
+          this.screen = 'online'
+        })
+      } else {
+        runInAction('constructor', () => {
+          this.error = 'offline'
+        })
+      }
+    }).catch((err: Error) => {
+      runInAction('constructor', () => {
+        this.error = err.toString()
+      })
+    })
     observe(this, 'screen', (change) => {
       history.navigate(`/${change.newValue}`, { replace: false })
       switch (change.newValue) {
@@ -73,42 +90,46 @@ export class AppStore implements Store {
       }
     })
     if ('astilectron' in window) {
-      astilectron.onMessage((message: Message) => {
-        const item = message.payload
-        switch (message.name) {
-          case 'addresses':
-            runInAction('addresses', () => {
-              this.addresses = item
-            })
-            this.screen = (item && item.length > 0) ? 'landing' : 'onboard'
-            break
-          case 'app-update':
-            item.link = (item.link)
-              ? item.link : `${this.gateway}/ipfs/${item.hash}`
-            runInAction('app-update', () => {
-              console.log('Running in action', item.appId)
-              this.apps[item.appId] = item
-            })
-            break
-          case 'notification':
-            item.user.avatar = (item.user.avatar)
-              ? `${this.gateway}/ipfs/${item.user.avatar}/0/small/d`
-              : item.user.avatar = DEFAULT_AVATAR
-            runInAction('notification', () => {
-              this.notifications.unshift(item)
-            })
-            const isMessage = item.type === 'MESSAGE_ADDED'
-            const opts: NotificationOptions = {
-              icon: item.user.avatar,
-              body: `${item.user.name} ${isMessage ? 'said: ' : ''}${item.body} `,
-              timestamp: moment(item.date).unix()
-            }
-            const note = new Notification(item.subject_desc, opts)
-            break
-          default:
-            console.log(message)
-        }
-      })
+      try {
+        astilectron.onMessage((message: Message) => {
+          const item = message.payload
+          switch (message.name) {
+            case 'addresses':
+              runInAction('addresses', () => {
+                this.addresses = item
+              })
+              this.screen = (item && item.length > 0) ? 'landing' : 'onboard'
+              break
+            case 'app-update':
+              item.link = (item.link)
+                ? item.link : `${this.gateway}/ipfs/${item.hash}`
+              runInAction('app-update', () => {
+                this.apps[item.appId] = item
+              })
+              break
+            case 'notification':
+              item.user.avatar = (item.user.avatar)
+                ? `${this.gateway}/ipfs/${item.user.avatar}/0/small/d`
+                : item.user.avatar = DEFAULT_AVATAR
+              runInAction('notification', () => {
+                this.notifications.unshift(item)
+              })
+              const isMessage = item.type === 'MESSAGE_ADDED'
+              const opts: NotificationOptions = {
+                icon: item.user.avatar,
+                body: `${item.user.name} ${isMessage ? 'said: ' : ''}${item.body} `,
+                timestamp: moment(item.date).unix()
+              }
+              const note = new Notification(item.subject_desc, opts)
+              break
+            default:
+              console.log(message)
+          }
+        })
+
+      } catch (err) {
+        console.log('message handler already defined')
+      }
     }
   }
   // Methods
@@ -129,23 +150,41 @@ export class AppStore implements Store {
     let screen: Screen = 'loading'
     if ('astilectron' in window) {
       try {
+        this.error = 'loading'
         const response = await this.sendMessage({
           name: 'init',
           payload: { mnemonic, address, password }
         })
-        screen = response ? 'online' : 'error'
+        if (response && response.payload) {
+          screen = 'error'
+          runInAction('initAndStartTextile', () => {
+            // TODO: Move this to go side of things?
+            const passError = 'file is not a database'
+            this.error = response.payload === passError ?
+              'unable to decrypt db (invalid password?)' :
+              response.payload
+          })
+        } else {
+          await this.fetchAddress()
+          runInAction('initAndStartTextile', () => {
+            this.error = ''
+            this.screen = 'online'
+          })
+        }
       } catch (err) {
-        screen = 'error'
+        this.screen = 'online'
       }
     } else {
       // Do nothing (we're probably in dev mode?)
-      screen = 'online'
+      this.screen = 'online'
     }
-    const newAddress = await textile.account.address()
-    runInAction('initAndStartTextile', () => {
-      this.screen = screen
-      this.currentAddress = newAddress
-    })
+  }
+  @action async fetchAddress() {
+    try {
+      this.currentAddress = await textile.account.address()
+    } catch (err) {
+      console.log(err)
+    }
   }
   @action async fetchMessages() {
     try {

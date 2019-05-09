@@ -1,11 +1,10 @@
 import React, { SyntheticEvent, FormEvent, ChangeEvent } from 'react'
 import {
-  Button, Header, Segment, Form, TextAreaProps, Message, Icon, Modal, Popup, InputOnChangeData,
+  Button, Header, Segment, Form, TextAreaProps, Message, Icon, Popup, InputOnChangeData,
   Progress, Input, PopupProps
 } from 'semantic-ui-react'
 import zxcvbn from 'zxcvbn'
 import { RouteComponentProps } from '@reach/router'
-import QrReader from 'react-qr-reader'
 import BackArrow from '../Components/BackArrow'
 import { ConnectedComponent, connect } from '../Components/ConnectedComponent'
 import { observer } from 'mobx-react'
@@ -14,7 +13,6 @@ import { Stores } from '../Stores'
 interface LoginState {
   mnemonic: string
   password: string
-  modalOpen: boolean
   score?: number
   passType: string // password | input
 }
@@ -46,7 +44,6 @@ export default class Login extends ConnectedComponent<RouteComponentProps, Store
   state = {
     mnemonic: '',
     password: '',
-    modalOpen: false,
     score: undefined,
     passType: 'password'
   }
@@ -64,26 +61,17 @@ export default class Login extends ConnectedComponent<RouteComponentProps, Store
     this.stores.store.screen = 'loading'
     this.stores.store.initAndStartTextile(this.state.mnemonic, undefined, this.state.password)
   }
-  handleScan = (data: string | null) => {
-    if (data !== null) {
-      this.setState({ mnemonic: data })
-      this.handleQrClose()
-    }
-  }
   // tslint:disable-next-line:no-console
   handleError = () => console.log('error')
   togglePassType = () => this.setState({
     passType: this.state.passType === 'password' ? 'input' : 'password'
   })
-  handleQrOpen = () => this.setState({ modalOpen: true })
-  handleQrClose = () => this.setState({ modalOpen: false })
   render() {
     const { mnemonic, password, passType, score } = this.state
-
     const inValid = mnemonic.split(/\b[^\s]+\b/).length < 13
     return (
       <div>
-        <Form onSubmit={this.handleSubmit} style={{ height: '100vh' }}>
+        <Form onSubmit={this.handleSubmit}>
           <Segment basic>
             <Header as='h3'>
               Enter an existing <BIP39Popup trigger={<span style={{ textDecoration: 'underline' }}>mnemonic passphrase</span>} />
@@ -117,21 +105,10 @@ export default class Login extends ConnectedComponent<RouteComponentProps, Store
               <Progress attached='bottom' indicating value={score || 0} total={4} />
             </Form.Field>
           </Segment>
-          <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-            <Button style={{ borderRadius: 0 }} content='Sign-in' icon='sign-in' type='submit' positive disabled={inValid} />
-            <Modal
-              trigger={
-                <Button disabled style={{ borderRadius: 0 }} content='Scan' icon='qrcode' type='button' onClick={this.handleQrOpen} />
-              }
-              open={this.state.modalOpen}
-              onClose={this.handleQrClose}
-              size='small'
-              basic
-            >
-              <QrReader onError={this.handleError} onScan={this.handleScan} />
-            </Modal>
-          </Button.Group>
         </Form>
+        <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
+          <Button onClick={this.handleSubmit} style={{ borderRadius: 0 }} content='Sign-in' icon='sign-in' type='button' disabled={inValid} />
+        </Button.Group>
         <BackArrow onClick={() => {
           if (this.props.navigate) {
             this.props.navigate('..')

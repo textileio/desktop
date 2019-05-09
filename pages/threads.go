@@ -4,17 +4,18 @@ import (
 	"crypto/rand"
 	"errors"
 	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"time"
+
 	ipld "github.com/ipfs/go-ipld-format"
-	iface "github.com/ipfs/interface-go-ipfs-core"
+	ipfspath "github.com/ipfs/go-path"
 	crypto "github.com/libp2p/go-libp2p-crypto"
 	"github.com/textileio/go-textile/ipfs"
 	"github.com/textileio/go-textile/pb"
 	"github.com/textileio/go-textile/schema"
 	"github.com/textileio/go-textile/util"
-	"os"
-	"path/filepath"
-	"strings"
-	"time"
 )
 
 // Adds a single file to the app thread: pagesThreadId
@@ -38,7 +39,7 @@ func addFile(path string) (string, error) {
 	}
 
 	var use string
-	if ref, err := iface.ParsePath(path); err == nil {
+	if ref, err := ipfspath.ParsePath(path); err == nil {
 		parts := strings.Split(ref.String(), "/")
 		use = parts[len(parts)-1]
 	}

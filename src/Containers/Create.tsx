@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, ChangeEvent, createRef } from 'react'
 import {
   Button, Header, Segment, Form, Icon, Popup, InputOnChangeData,
-  Progress, Input, PopupProps, TextArea, Ref
+  Progress, Input, PopupProps, TextArea
 } from 'semantic-ui-react'
 import zxcvbn from 'zxcvbn'
 import { RouteComponentProps } from '@reach/router'
@@ -78,23 +78,22 @@ export default class Create extends ConnectedComponent<RouteComponentProps, Stor
     const { mnemonic, password, passType, score } = this.state
     return (
       <div>
-        <Form onSubmit={this.handleSubmit} style={{ height: '100vh' }}>
+        <Form onSubmit={this.handleSubmit}>
           <Segment basic>
             <Header as='h3'>
               Here's your secret <BIP39Popup trigger={<span style={{ textDecoration: 'underline' }}>mnemonic passphrase</span>} />
             </Header>
             <Form.Field style={{ margin: 0 }}>
-              {/* <Ref innerRef={this.textArea}> */}
                 <TextArea
                   icon='search'
                   readOnly
                   name='mnemonic'
                   value={mnemonic}
                 />
-              {/* </Ref> */}
             </Form.Field>
             <Button.Group floated='right' basic size='mini' attached='bottom'>
               <Button icon='copy' type='button' onClick={this.copyToClipboard}/>
+              <Button icon='refresh' type='button' onClick={this.handleRefresh} />
             </Button.Group>
             <Form.Field>
               <label>Use a <PasswordPopup trigger={<span style={{ textDecoration: 'underline' }}>password</span>} /> for added security</label>
@@ -113,11 +112,10 @@ export default class Create extends ConnectedComponent<RouteComponentProps, Stor
               <Progress attached='bottom' indicating value={score || 0} total={4} />
             </Form.Field>
           </Segment>
-          <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-            <Button style={{ borderRadius: 0 }} content='Create' icon='user secret' type='submit' positive />
-            <Button style={{ borderRadius: 0 }} content='Refresh' icon='refresh' type='button' onClick={this.handleRefresh} />
-          </Button.Group>
         </Form>
+        <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
+          <Button onClick={this.handleSubmit} style={{ borderRadius: 0 }} content='Create' icon='user secret' type='button' />
+        </Button.Group>
         <BackArrow onClick={() => {
           if (this.props.navigate) {
             this.props.navigate('..')
