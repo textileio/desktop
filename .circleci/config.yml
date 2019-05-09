@@ -13,6 +13,7 @@ jobs:
       TERMINFO: /etc/terminfo
     steps:
       - *checkout-linux
+      - checkout
       - restore_cache:
           key: go-mod-v1-{{ checksum "go.sum" }}-{{ arch }}
       - run:
