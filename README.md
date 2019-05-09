@@ -17,16 +17,14 @@ Join us on our [public Slack channel](https://slack.textile.io/) for news, discu
 ## Table of Contents
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
-- [Textile Desktop _(desktop)_](#textile-desktop-desktop)
-  - [Table of Contents](#table-of-contents)
-  - [Background](#background)
-  - [Development](#development)
-    - [Commands](#commands)
-  - [Documentation](#documentation)
-  - [Maintainer](#maintainer)
-  - [Contributing](#contributing)
-  - [Contributors](#contributors)
-  - [License](#license)
+- [Background](#background)
+- [Development](#development)
+  * [Commands](#commands)
+- [Documentation](#documentation)
+- [Maintainer](#maintainer)
+- [Contributing](#contributing)
+- [Contributors](#contributors)
+- [License](#license)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Background
@@ -130,7 +128,8 @@ Textile's Desktop Tray App is a work in progress. As such, there's a few things 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (CONTRIBUTORS) -->
 | **Commits** | **Contributor** |  
 | --- | --- |  
-| 27 | [carsonfarmer](https://github.com/carsonfarmer) |  
+| 31 | [carsonfarmer](https://github.com/carsonfarmer) |  
+| 8  | [andrewxhill](https://github.com/andrewxhill) |  
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
 
