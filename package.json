@@ -39,7 +39,9 @@
     "release": "yarn version --patch",
     "postversion": "git push --follow-tags",
     "test": "craco test",
-    "clean": "rimraf build resources node_modules output bind_*.go"
+    "clean": "rimraf build resources node_modules output bind_*.go",
+    "prelatest": "yarn install",
+    "latest": "yarn upgrade @textile/js-http-client; go get github.com/textileio/go-textile"
   },
   "eslintConfig": {
     "extends": "react-app"

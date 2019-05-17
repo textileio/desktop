@@ -676,6 +676,8 @@ github.com/textileio/go-textile v0.1.12-rc3 h1:rwceymt+/m7hGTZI99uxpaGEnttsx8PxN
 github.com/textileio/go-textile v0.1.12-rc3/go.mod h1:EprXr147/jzdj6jSUtLK8g9zH+BR0L1fcnd5frvp/Ps=
 github.com/textileio/go-textile v0.1.13-rc8 h1:H1oF4oG1ZKj/huPBhCXjOytxBn2sR8hTPBWAsb6hq5k=
 github.com/textileio/go-textile v0.1.13-rc8/go.mod h1:cEVmHtYoEI0gWSVmVaNLyfIBUU7GJfqdRaSp2qR7HCY=
+github.com/textileio/go-textile v0.1.13 h1:evSen90tokDnqtyMsCGXJCtTrbkSxMhuIg3C3SPLE2s=
+github.com/textileio/go-textile v0.1.13/go.mod h1:cEVmHtYoEI0gWSVmVaNLyfIBUU7GJfqdRaSp2qR7HCY=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e/go.mod h1:XDKHRm5ThF8YJjx001LtgelzsoaEcvnA7lVWz9EeX3g=
 github.com/tyler-smith/go-bip39 v0.0.0-20181017060643-dbb3b84ba2ef h1:luEzjJzktS9eU0CmI0uApXHLP/lKzOoRPrJhd71J8ik=
 github.com/tyler-smith/go-bip39 v0.0.0-20181017060643-dbb3b84ba2ef/go.mod h1:sJ5fKU0s6JVwZjjcUEX2zFOnvq0ASQ2K9Zr6cf67kNs=

@@ -1060,10 +1060,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@textile/js-http-client@0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.14.tgz#441ef839f3c1411d49d5362803585a03e542a2a1"
-  integrity sha512-NhpC2NyVqhoOsH5oiWBZM/VrRnkKW5q+WLzuNU0cEz03Zma5HJ4OBMZ9C9ocbI0+TrJxLmS+FTMSLH7iRcSr7g==
+"@textile/js-http-client@0.2.15":
+  version "0.2.15"
+  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.15.tgz#2791756e23ccf8a5069e059f7b479749b57b42cb"
+  integrity sha512-H31Hn/UhKuolWbsDTYB1cRNKnHkXYhkI8t/+cKDducKuHFSBxeQT/Vto8Zv9j8NCpZy4kUNmW2Y4U8kI0rOdYg==
   dependencies:
     bip39 "^2.5.0"
     bs58 "^4.0.1"
@@ -7193,7 +7193,7 @@ mv@^2.1.1:
     ncp "~2.0.0"
     rimraf "~2.4.0"
 
-nan@^2.12.1, nan@^2.9.2:
+nan@^2.13.2, nan@^2.9.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.13.2.tgz#f51dc7ae66ba7d5d55e1e6d4d8092e802c9aefe7"
   integrity sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw==
@@ -10516,15 +10516,15 @@ timsort@^0.3.0:
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
 tiny-secp256k1@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/tiny-secp256k1/-/tiny-secp256k1-1.1.0.tgz#86bf932e153641d6fd23c3faa470bf8c727452e3"
-  integrity sha512-DIl0SCUIVcPrk/oOiq8/YgQ69Beayw4XSW2icyXJN8xfKMmxo5XM8gXVG1Ex+rYsHg2xuEpNFeeU6J4CtqQFrA==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/tiny-secp256k1/-/tiny-secp256k1-1.1.1.tgz#53f1613bcbbc161bfc7824a65c08fa5cd0dcba2b"
+  integrity sha512-jA9WalQuhKun1svJrAVi9Vu8aUWKMfR7nMV903kHjrHTTY/IFa0petSq+Jk/Mv447dGD9LC8fGsmGRubBbcNng==
   dependencies:
     bindings "^1.3.0"
     bn.js "^4.11.8"
     create-hmac "^1.1.7"
     elliptic "^6.4.0"
-    nan "^2.12.1"
+    nan "^2.13.2"
 
 tmp@^0.0.33:
   version "0.0.33"
