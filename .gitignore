@@ -4,6 +4,7 @@ node_modules
 output
 resources
 bind_*.go
+build
 
 # macOS
 .DS_Store

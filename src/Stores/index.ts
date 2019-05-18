@@ -8,7 +8,6 @@ const { remote } = window.require('electron')
 import path from 'path'
 import URL from 'url-parse'
 
-const AVATAR_KEY = 'profile'
 const DEFAULT_AVATAR = 'https://react.semantic-ui.com/images/wireframe/square-image.png'
 
 export interface Message {
@@ -124,7 +123,7 @@ export class AppStore implements Store {
               break
             case 'notification':
               item.user.avatar = (item.user.avatar)
-                ? `${this.gateway}/ipfs/${item.user.avatar}/0/small/d`
+                ? `${this.gateway}/ipfs/${item.user.avatar}/0/small/content`
                 : item.user.avatar = DEFAULT_AVATAR
               runInAction('notification', () => {
                 this.notifications.unshift(item)
@@ -221,7 +220,7 @@ export class AppStore implements Store {
         this.profile = {
           name: contact.name ? contact.name : contact.address.slice(-8),
           address: contact.address,
-          avatar: contact.avatar ? `${this.gateway}/ipfs/${contact.avatar}/0/large/d` : DEFAULT_AVATAR,
+          avatar: contact.avatar ? `${this.gateway}/ipfs/${contact.avatar}/0/large/content` : DEFAULT_AVATAR,
           date: updated || utc().format()
         }
       })
@@ -234,7 +233,7 @@ export class AppStore implements Store {
       const notifications = await textile.notifications.list()
       const processed = notifications.items.map((item) => {
         item.user.avatar = item.user.avatar
-          ? `${this.gateway}/ipfs/${item.user.avatar}/0/small/d`
+          ? `${this.gateway}/ipfs/${item.user.avatar}/0/small/content`
           : DEFAULT_AVATAR
         return item
       })
@@ -293,30 +292,13 @@ export class AppStore implements Store {
     }
     return read(await reader.read())
   }
-  @action async setProfile(userString?: string, avatarFile?: FormData) {
+  @action async setProfile(userString?: string, avatarFile?: File) {
     if (userString) {
       await textile.profile.setName(userString)
       this.fetchProfile()
     }
     if (avatarFile) {
-      let avatarThread
-      const threads = await textile.threads.list()
-      for (const thread of threads.items) {
-        if (thread.key === AVATAR_KEY) {
-          avatarThread = thread
-          break
-        }
-      }
-      if (!avatarThread) {
-        const schemas = await textile.schemas.defaults()
-        const avatarSchema = schemas.avatar
-        const file = await textile.schemas.add(avatarSchema)
-        avatarThread = await textile.threads.add(
-            'Profile Images', file.hash, AVATAR_KEY, 'private', 'not_shared'
-          )
-      }
-      const addedFile = await textile.files.add(avatarFile, 'avatar', avatarThread.id)
-      await textile.profile.setAvatar(addedFile.files[0].links.large.hash)
+      await textile.profile.setAvatar(avatarFile)
       this.fetchProfile()
     }
   }

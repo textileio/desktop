@@ -30,9 +30,7 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
     e.preventDefault()
     const files = (e.target as HTMLInputElement).files
     if (files && files.length > 0) {
-      const form = new FormData()
-      form.append('file', files[0], files[0].name)
-      this.stores.store.setProfile(undefined, form)
+      this.stores.store.setProfile(undefined, files[0])
     }
   }
   onAddressClick = () => {

@@ -82,7 +82,7 @@ export default class Landing extends ConnectedComponent<RouteComponentProps, Sto
           </Form>
         </Ref>
         <Button.Group fluid widths='2' style={{ position: 'absolute', bottom: 0 }}>
-          <Button style={{ borderRadius: 0 }} content='Sign-in' icon='sign-in' type='button' onClick={this.handleLogin}/>
+          <Button style={{ borderRadius: 0 }} content='Sign-in' icon='sign-in' type='button' onClick={this.handleLogin} />
           <Button style={{ borderRadius: 0 }} content='New' icon='key' type='button' onClick={this.handleCreate} />
         </Button.Group>
         <BackArrow name='close' onClick={() => { this.stores.store.sendMessage({ name: 'quit' }) }} />

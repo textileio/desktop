@@ -19,9 +19,11 @@ export default class Summary extends ConnectedComponent<RouteComponentProps, Sto
     }
   }
   onConfigClick = () => {
-    // tslint:disable-next-line:no-console
-    console.log(this.stores.store.dataFolder)
-    shell.showItemInFolder(path.join(this.stores.store.dataFolder, 'textile'))
+    const success = shell.showItemInFolder(path.join(this.stores.store.dataFolder, 'textile'))
+    if (!success) {
+      // Just open the whole repo dir instead
+      shell.openItem(path.join(this.stores.store.dataFolder, '..'))
+    }
   }
   onSyncClick = () => {
     this.stores.store.syncAccount().then((result: string[]) => {
