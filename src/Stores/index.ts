@@ -1,10 +1,12 @@
 // tslint:disable: no-console
 import { observe, action, observable, runInAction, computed } from 'mobx'
-import textile, { Wallet } from '@textile/js-http-client'
+import textile, { Thread, CafeSession, Notification as TNotification, QueryResult } from '@textile/js-http-client'
+import Wallet from '@textile/js-wallet'
 import { createMemorySource, createHistory } from '@reach/router'
 import moment, { utc } from 'moment'
 const { remote } = window.require('electron')
 import path from 'path'
+import URL from 'url-parse'
 
 const AVATAR_KEY = 'profile'
 const DEFAULT_AVATAR = 'https://react.semantic-ui.com/images/wireframe/square-image.png'
@@ -42,23 +44,22 @@ export interface AccountApps {
 
 export class AppStore implements Store {
   @computed get dataFolder() {
-    const folder = path
-      .join(remote.app.getPath('userData'), this.currentAddress)
-      // Replace Electron in dev envs
-      .replace('Electron', 'Textile')
-    return folder
+    const dir = (remote.process.platform === 'darwin') ?
+      remote.app.getPath('userData').replace('Electron', 'Textile') :
+      path.join(remote.app.getPath('home'), '.textile')
+    return path.join(dir, this.currentAddress)
   }
   // Observables
   @observable history = history
-  // TODO: Maybe this should just be strings and do the conversion in components?
   @observable addresses: string[] = []
   @observable error: string = ''
   @observable currentAddress: string = ''
-  @observable threads: any[] = []
+  @observable threads: Thread[] = []
+  @observable API = 'http://127.0.0.1:40600'
   @observable gateway = 'http://127.0.0.1:5050'
   @observable screen: Screen = 'starting'
-  @observable cafes: any[] = []
-  @observable notifications: any[] = []
+  @observable cafes: CafeSession[] = []
+  @observable notifications: TNotification[] = []
   @observable apps: AccountApps = {}
   @observable profile?: ProfileInfo = undefined
   constructor() {
@@ -105,6 +106,20 @@ export class AppStore implements Store {
                 ? item.link : `${this.gateway}/ipfs/${item.hash}`
               runInAction('app-update', () => {
                 this.apps[item.appId] = item
+              })
+              break
+            case 'settings':
+              runInAction('settings', () => {
+                if (item.API) {
+                  const addr = new URL(item.API, {})
+                  addr.set('protocol', 'http')
+                  this.API = addr.toString()
+                }
+                if (item.Gateway) {
+                  const addr = new URL(item.Gateway, {})
+                  addr.set('protocol', 'http')
+                  this.gateway = addr.toString()
+                }
               })
               break
             case 'notification':
@@ -188,7 +203,7 @@ export class AppStore implements Store {
   }
   @action async fetchMessages() {
     try {
-      const success = await textile.cafes.checkMessages()
+      const success = await textile.cafes.messages()
     } catch (err) {
       console.log(err)
     }
@@ -261,17 +276,22 @@ export class AppStore implements Store {
     }
   }
   @action async syncAccount() {
-    textile.account.sync(true)
-      .then((stream: ReadableStream) => {
-        const reader = stream.getReader()
-        reader.read().then((item: any) => {
-          const opts: NotificationOptions = {
-            body: item.id,
-            timestamp: moment().unix()
-          }
-          const note = new Notification('Found and applying snapshot', opts)
-        })
-      })
+    const stream = await textile.account.sync(true)
+    const reader = stream.getReader()
+    const names: string[] = []
+    const read = async (result: ReadableStreamReadResult<QueryResult>): Promise<string[]> => {
+      if (result.done) {
+        return names
+      }
+      try {
+        names.push(result.value.value.name)
+      } catch (err) {
+        reader.cancel(undefined)
+        return []
+      }
+      return read(await reader.read())
+    }
+    return read(await reader.read())
   }
   @action async setProfile(userString?: string, avatarFile?: FormData) {
     if (userString) {

@@ -7,10 +7,11 @@ import { observer } from 'mobx-react'
 import { Stores } from '../Stores'
 const { shell } = window.require('electron')
 import path from 'path'
+import moment from 'moment'
 
 @connect('store') @observer
 export default class Summary extends ConnectedComponent<RouteComponentProps, Stores> {
-  onAPIClick = () => { shell.openExternal('http://127.0.0.1:40600/docs/index.html') }
+  onAPIClick = () => { shell.openExternal(`${this.stores.store.API}/docs/index.html`) }
   onQuitClick = () => { this.stores.store.sendMessage({ name: 'quit' }) }
   onAccountClick = () => {
     if (this.props.navigate) {
@@ -23,8 +24,15 @@ export default class Summary extends ConnectedComponent<RouteComponentProps, Sto
     shell.showItemInFolder(path.join(this.stores.store.dataFolder, 'textile'))
   }
   onSyncClick = () => {
-    this.stores.store.syncAccount()
-    this.stores.store.fetchProfile()
+    this.stores.store.syncAccount().then((result: string[]) => {
+      const opts: NotificationOptions = {
+        body: result.join(', '),
+        timestamp: moment().unix()
+      }
+      // TODO: Probably just one notification at the end would suffice
+      const note = new Notification('Found and applied snapshots', opts)
+      this.stores.store.fetchProfile()
+    })
   }
   render() {
     const { store } = this.stores
@@ -42,7 +50,7 @@ export default class Summary extends ConnectedComponent<RouteComponentProps, Sto
               <Dropdown.Menu>
                 <Dropdown.Item icon='user' text='Account' onClick={this.onAccountClick} />
                 <Dropdown.Item icon='wrench' text='Settings' disabled/>
-                <Dropdown.Item icon='sync' text='Sync' />
+                <Dropdown.Item icon='sync' text='Sync' onClick={this.onSyncClick} />
                 <Dropdown.Divider />
                 <Dropdown.Item icon='wrench' text='Config File' onClick={this.onConfigClick} />
                 <Dropdown.Item icon='external' text='API Docs' onClick={this.onAPIClick}/>

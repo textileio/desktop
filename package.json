@@ -8,8 +8,10 @@
   "license": "MIT",
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "@textile/js-http-client": "0.2.15",
+    "@textile/js-http-client": "0.2.18",
+    "@textile/js-wallet": "^0.1.1",
     "@types/react-qr-reader": "^2.1.2",
+    "@types/url-parse": "^1.4.3",
     "@types/zxcvbn": "^4.4.0",
     "electron": "^4.1.0",
     "electron-is-dev": "^1.0.1",
@@ -23,6 +25,7 @@
     "react-reveal": "^1.2.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.85.0",
+    "url-parse": "^1.4.7",
     "zxcvbn": "^4.4.2"
   },
   "scripts": {

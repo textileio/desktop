@@ -78,7 +78,12 @@ export default class Profile extends ConnectedComponent<RouteComponentProps, Sto
     return (
       <div style={{ height: 'calc(100vh - 1em)' }}>
         <Segment basic style={{ height: 'calc(100vh - 1em)' }}>
-          <Header as='h3' onClick={this.onAddressClick}>
+          <Header
+            title='Click to copy node address'
+            as='h3'
+            style={{ cursor: 'pointer' }}
+            onClick={this.onAddressClick}
+          >
             ACCOUNT
             <Header.Subheader>
               Updated {profile ? <Moment fromNow>{profile.date}</Moment> : 'never'}

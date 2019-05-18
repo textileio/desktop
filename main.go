@@ -141,6 +141,8 @@ func startTextile(address string, password string) error {
 		return err
 	}
 
+	sendData("settings", node.Config().Addresses)
+
 	// start the Pages app
 	pages.Start(address, repoPath, node, appUpdate)
 

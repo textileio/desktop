@@ -1060,23 +1060,29 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@textile/js-http-client@0.2.15":
-  version "0.2.15"
-  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.15.tgz#2791756e23ccf8a5069e059f7b479749b57b42cb"
-  integrity sha512-H31Hn/UhKuolWbsDTYB1cRNKnHkXYhkI8t/+cKDducKuHFSBxeQT/Vto8Zv9j8NCpZy4kUNmW2Y4U8kI0rOdYg==
+"@textile/js-http-client@0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.18.tgz#bda9fb40f8913f8fcc428f912b9a34247d11cca8"
+  integrity sha512-OMu7pG5dBMKzkX8Vk+TPrgwgyi+8kxewgP23v9RlH3csXotylD4ezxuvAI2PL/skhz1rKLj1PNKW6G56dgH76Q==
+  dependencies:
+    isomorphic-fetch "^2.2.1"
+    toposort "^2.0.2"
+    url-parse "^1.4.4"
+    url-toolkit "^2.1.6"
+    web-streams-polyfill "^2.0.3"
+
+"@textile/js-wallet@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@textile/js-wallet/-/js-wallet-0.1.1.tgz#652d56f6b23a43bca57efe3cafe16c00786a13d2"
+  integrity sha512-Pv1NWzchFr9tnW0o/BDnwjwV77O7ygqBWwyJLKAmyEoZVuAd47rq1VFvzezr/LQridPpT18hykF/5Akg7ODefQ==
   dependencies:
     bip39 "^2.5.0"
     bs58 "^4.0.1"
     crc "^3.8.0"
     create-hash "^1.2.0"
     create-hmac "^1.1.7"
-    isomorphic-fetch "^2.2.1"
     tiny-secp256k1 "^1.0.1"
-    toposort "^2.0.2"
     tweetnacl "^1.0.1"
-    url-parse "^1.4.4"
-    url-toolkit "^2.1.6"
-    web-streams-polyfill "^2.0.3"
 
 "@textile/tslint-rules@^1.0.3":
   version "1.0.3"
@@ -1166,6 +1172,11 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
+
+"@types/url-parse@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/url-parse/-/url-parse-1.4.3.tgz#fba49d90f834951cb000a674efee3d6f20968329"
+  integrity sha512-4kHAkbV/OfW2kb5BLVUuUMoumB3CP8rHqlw48aHvFy5tf9ER0AfOonBlX29l/DD68G70DmyhRlSYfQPSYpC5Vw==
 
 "@types/vfile-message@*":
   version "1.0.1"
@@ -10929,7 +10940,7 @@ url-parse@^1.4.3:
     querystringify "^2.0.0"
     requires-port "^1.0.0"
 
-url-parse@^1.4.4:
+url-parse@^1.4.4, url-parse@^1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
   integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==

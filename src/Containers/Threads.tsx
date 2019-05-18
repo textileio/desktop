@@ -6,6 +6,7 @@ import { RouteComponentProps } from '@reach/router'
 import BackArrow from '../Components/BackArrow'
 import { Stores } from '../Stores'
 import Moment from 'react-moment'
+const { clipboard } = window.require('electron')
 
 @connect('store') @observer
 export default class Threads extends ConnectedComponent<RouteComponentProps, Stores> {
@@ -39,7 +40,11 @@ export default class Threads extends ConnectedComponent<RouteComponentProps, Sto
     return (
       <Card key={item.id}>
         <Card.Content>
-          <Card.Header>{item.name}</Card.Header>
+          <Card.Header
+            title='Click to copy thread id'
+            style={{ cursor: 'pointer' }}
+            onClick={() => clipboard.write({ text: item.id })}
+          >{item.name}</Card.Header>
           <Card.Meta>
             {item.type && item.type.toLowerCase().replace('_', ' ')}
             {item.sharing && ' and ' + item.sharing.toLowerCase().replace('_', ' ')}
