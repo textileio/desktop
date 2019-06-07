@@ -2,14 +2,15 @@ package pages
 
 import (
 	"errors"
-	"github.com/textileio/go-textile/core"
-	"github.com/textileio/go-textile/mill"
-	"github.com/textileio/go-textile/pb"
 	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/textileio/go-textile/core"
+	"github.com/textileio/go-textile/mill"
+	"github.com/textileio/go-textile/pb"
 )
 
 // Replica of the getMill method used in textile.mobile api
@@ -60,7 +61,7 @@ func getFileConfigByPath(mil mill.Mill, path string, use string, plaintext bool)
 	} else {
 		var file *pb.FileIndex
 		var err error
-		reader, file, err = appNode.FileData(use)
+		reader, file, err = appNode.FileContent(use)
 		if err != nil {
 			return nil, err
 		}
