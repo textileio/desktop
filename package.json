@@ -1,7 +1,7 @@
 {
-  "name": "tray",
+  "name": "@textile/desktop",
   "version": "0.1.3",
-  "description": "Textile Tray App",
+  "description": "Textile Desktop Tray App",
   "main": "public/electron.ts",
   "homepage": "./",
   "author": "Textile",
@@ -29,7 +29,6 @@
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
-    "credit": "node ./scripts/contributors.js",
     "lint": "./node_modules/tslint/bin/tslint  -c tslint.json --project .",
     "start": "craco start",
     "dev": "concurrently \"cross-env BROWSER=none yarn craco start\" \"wait-on http://localhost:3000\"",
@@ -37,14 +36,12 @@
     "dist": "./scripts/bundle.sh",
     "build": "craco build",
     "postbuild": "rimraf resources & move-cli build resources",
-    "precommit": "yarn lint",
-    "preversion": "yarn credit; yarn precommit",
-    "release": "yarn version --patch",
+    "preversion": "yarn lint",
     "postversion": "git push --follow-tags",
     "test": "craco test",
-    "clean": "rimraf build resources node_modules output bind_*.go",
+    "clean": "rimraf build resources output bind_*.go",
     "prelatest": "yarn install",
-    "latest": "yarn upgrade @textile/js-http-client; go get github.com/textileio/go-textile"
+    "latest": "yarn upgrade @textile/js-http-client & go get github.com/textileio/go-textile"
   },
   "eslintConfig": {
     "extends": "react-app"

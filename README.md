@@ -23,7 +23,6 @@ Join us on our [public Slack channel](https://slack.textile.io/) for news, discu
 - [Documentation](#documentation)
 - [Maintainer](#maintainer)
 - [Contributing](#contributing)
-- [Contributors](#contributors)
 - [License](#license)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -122,16 +121,6 @@ Textile's Desktop Tray App is a work in progress. As such, there's a few things 
   * **Contribute to the [Textile WIKI](https://github.com/textileio/go-textile/wiki)** with any additions or questions you have about Textile and its various impmenentations. A good example would be asking, "What is a thread?". If you don't know a term, odds are someone else doesn't either. Eventually, we should have a good understanding of where we need to improve communications and teaching together to make Textile even better.
 
  Before you get started, be sure to read our [contributors guide](./CONTRIBUTING.md) and our [contributor covenant code of conduct](./CODE_OF_CONDUCT.md).
-
-## Contributors
-<!-- Update with yarn credit -->
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (CONTRIBUTORS) -->
-| **Commits** | **Contributor** |  
-| --- | --- |  
-| 41 | [carsonfarmer](https://github.com/carsonfarmer) |  
-| 10 | [andrewxhill](https://github.com/andrewxhill) |  
-
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
 
 ## License
 
