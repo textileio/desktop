@@ -128,7 +128,7 @@ Textile's Desktop Tray App is a work in progress. As such, there's a few things 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (CONTRIBUTORS) -->
 | **Commits** | **Contributor** |  
 | --- | --- |  
-| 39 | [carsonfarmer](https://github.com/carsonfarmer) |  
+| 41 | [carsonfarmer](https://github.com/carsonfarmer) |  
 | 10 | [andrewxhill](https://github.com/andrewxhill) |  
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END -->

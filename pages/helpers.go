@@ -74,7 +74,7 @@ func getFileConfigByPath(mil mill.Mill, path string, use string, plaintext bool)
 	if mil.ID() == "/json" {
 		conf.Media = "application/json"
 	} else {
-		conf.Media, err = appNode.GetMedia(reader, mil)
+		conf.Media, err = appNode.GetMedia(reader)
 		if err != nil {
 			return nil, err
 		}

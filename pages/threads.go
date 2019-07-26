@@ -44,12 +44,8 @@ func addFile(path string) (string, error) {
 		use = parts[len(parts)-1]
 	}
 
-	mdir := &pb.MobilePreparedFiles{
-		Dir: &pb.Directory{
-			Files: make(map[string]*pb.FileIndex),
-		},
-		Pin: make(map[string]string),
-	}
+	files := make(map[string]*pb.FileIndex)
+	pins := make(map[string]string)
 
 	writeDir := repoPath + "/tmp/"
 
@@ -67,15 +63,12 @@ func addFile(path string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	mdir.Dir.Files[schema.SingleFileTag] = added
-
-	if added.Size >= int64(appNode.Config().Cafe.Client.Mobile.P2PWireLimit) {
-		mdir.Pin[added.Hash] = writeDir + added.Hash
-	}
+	files[schema.SingleFileTag] = added
+	pins[added.Hash] = writeDir + added.Hash
 
 	var node ipld.Node
 	var keys *pb.Keys
-	file := mdir.Dir.Files[schema.SingleFileTag]
+	file := files[schema.SingleFileTag]
 	if file != nil {
 
 		node, keys, err = appNode.AddNodeFromFiles([]*pb.FileIndex{file})
@@ -86,7 +79,7 @@ func addFile(path string) (string, error) {
 	} else {
 
 		rdir := &pb.Directory{Files: make(map[string]*pb.FileIndex)}
-		for k, file := range mdir.Dir.Files {
+		for k, file := range files {
 			rdir.Files[k] = file
 		}
 
@@ -100,7 +93,7 @@ func addFile(path string) (string, error) {
 		return "", errors.New("no files found")
 	}
 
-	_, err = thrd.AddFiles(node, "", keys.Files)
+	_, err = thrd.AddFiles(node, "", "", keys.Files)
 	if err != nil {
 		return "", err
 	}

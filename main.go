@@ -154,7 +154,7 @@ func openAndStartTextile(address string, password string) error {
 }
 
 func initAndStartTextile(mnemonic string, password string) error {
-	wallet := wallet.NewWalletFromRecoveryPhrase(mnemonic)
+	wallet := wallet.WalletFromMnemonic(mnemonic)
 	// start with first account (default is not to use a password)
 	accnt, err := wallet.AccountAt(0, "")
 	if err != nil {

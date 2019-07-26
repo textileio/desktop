@@ -1,10 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Segment, Icon, Header, Card } from 'semantic-ui-react'
+import { Segment, Header, Card } from 'semantic-ui-react'
 import { ConnectedComponent, connect } from '../Components/ConnectedComponent'
 import { RouteComponentProps } from '@reach/router'
 import BackArrow from '../Components/BackArrow'
 import { Stores } from '../Stores'
+import { Thread } from '@textile/js-http-client'
 import Moment from 'react-moment'
 const { clipboard } = window.require('electron')
 
@@ -25,7 +26,7 @@ export default class Threads extends ConnectedComponent<RouteComponentProps, Sto
             </Header.Subheader>
           </Header>
           <Card.Group style={{ height: '85vh', overflowY: 'auto' }}>
-            {threads && threads.map((item: any) => this.renderItem(item))}
+            {threads && threads.map((item: Thread) => this.renderItem(item))}
           </Card.Group>
         </Segment>
         <BackArrow onClick={() => {
@@ -36,7 +37,7 @@ export default class Threads extends ConnectedComponent<RouteComponentProps, Sto
       </div>
     )
   }
-  renderItem(item: any) {
+  renderItem(item: Thread) {
     return (
       <Card key={item.id}>
         <Card.Content>
@@ -54,7 +55,7 @@ export default class Threads extends ConnectedComponent<RouteComponentProps, Sto
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          Updated <Moment fromNow>{item.head_block.date}</Moment>
+          Updated <Moment fromNow>{item.head_block ? item.head_block.date : undefined}</Moment>
         </Card.Content>
       </Card>
     )

@@ -1067,10 +1067,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@textile/js-http-client@0.2.20":
-  version "0.2.20"
-  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-0.2.20.tgz#fcbb71e9ec795c572aeccc2a548acf9ded0f7439"
-  integrity sha512-ItGD1IvVjJXgMjpzLeepMARTUbNEcqgz71BlJNwptpvXnVkiwpG2zyAS2qyUw8RsmgIdwA0frkIAd7n1zm2WGw==
+"@textile/js-http-client@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@textile/js-http-client/-/js-http-client-1.0.0.tgz#904e69e87c5d78211d1a1bbd58e1588b0ad736c1"
+  integrity sha512-c/ugEr38QWokWeM4Ym0GJXvyIpZwxfj6tLJaf9h6Dx/VtGCyfz97iNhgcx+ckhm1Dt+3wnLHKOeZxLoJGbkH+Q==
   dependencies:
     "@ef-carbon/fetch" "^2.1.3"
     isomorphic-form-data "^2.0.0"
