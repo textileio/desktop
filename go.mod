@@ -21,5 +21,5 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/radovskyb/watcher v1.0.6
 	github.com/sam-kamerer/go-plister v1.1.2 // indirect
-	github.com/textileio/go-textile v0.6.6
+	github.com/textileio/go-textile v0.7.1
 )
