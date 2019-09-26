@@ -959,6 +959,11 @@
   optionalDependencies:
     node-fetch "^2.2.0"
 
+"@ef-carbon/url@^2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@ef-carbon/url/-/url-2.4.3.tgz#e6ee87d6e160eeff4be7678f835cf8acf03dfb72"
+  integrity sha512-7Hkdf/qsmPcCMoa9mtqWf4EatgFyFgH3EKZ/xTvMA87LsPFvl44kvCWCyMVsODSdk7XceBeEqQZwuXtYkpG3zA==
+
 "@hapi/address@2.x.x":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.0.0.tgz#9f05469c88cb2fd3dcd624776b54ee95c312126a"
@@ -4552,9 +4557,9 @@ fork-ts-checker-webpack-plugin-alt@0.4.14:
     tapable "^1.0.0"
 
 form-data@^2.3.2:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.0.tgz#094ec359dc4b55e7d62e0db4acd76e89fe874d37"
-  integrity sha512-WXieX3G/8side6VIqx44ablyULoGruSde5PNTxoUyo5CeyAMX6nVWUd0rgist/EuX655cjhUhTo1Fo3tRYqbcA==
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
+  integrity sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
@@ -11088,9 +11093,9 @@ wbuf@^1.1.0, wbuf@^1.7.3:
     minimalistic-assert "^1.0.0"
 
 web-streams-polyfill@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-2.0.3.tgz#0c396f069a5eedc96c711393b12f2c67cf283a00"
-  integrity sha512-pOqiHmL3RBAGS+SgOR42RbPU6nc8/n15N2rsOXFYHLnTfs2Z8QHs8AizOeOaYEnhwPN4+hu3M2D9XvAqzvt6MA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-2.0.4.tgz#67ba73e42ae7c1d6dd64498e6e0a7952fb3993eb"
+  integrity sha512-hsLbiIZou2pZoht4VxfITEbCUz09YhZaaYFNICaZo7SOJrtW3/35LsJoAXeB8HITOlKpuWU0tFvtItOS2PpbsA==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
